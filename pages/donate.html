@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate — ScholarPath</title>
+  <meta name="description" content="Donate to a ScholarPath scholarship fund and help students achieve their college dreams." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .page-wrap { display: grid; grid-template-columns: 1fr 420px; gap: 2rem; padding: 2.5rem 3rem; max-width: 1200px; margin: 0 auto; }
+    .left-col { display: flex; flex-direction: column; gap: 1.5rem; }
+    .right-col { display: flex; flex-direction: column; gap: 1.25rem; }
+    .page-header .section-title { font-size: 2rem; }
+    .page-header p.sub { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+    .fund-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: border-color 0.2s; }
+    .fund-card:hover { border-color: var(--gold); }
+    .fund-card.active { border: 2px solid var(--gold); }
+    .fund-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .fund-name { font-size: 1rem; font-weight: 500; color: var(--navy); }
+    .fund-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); }
+    .progress-labels strong { color: var(--navy); }
+    .section-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+    .section-card h3 { font-size: 0.95rem; font-weight: 500; color: var(--navy); margin-bottom: 1rem; }
+    .amount-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 1rem; }
+    .amount-btn { background: #f5f5f5; border: 1px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 0.65rem; font-size: 0.95rem; font-weight: 500; cursor: pointer; color: var(--text); font-family: 'Inter', sans-serif; transition: all 0.15s; }
+    .amount-btn:hover { border-color: var(--gold); }
+    .amount-btn.selected { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .custom-amount { display: flex; align-items: center; border: 1px solid rgba(0,0,0,0.15); border-radius: 10px; overflow: hidden; }
+    .custom-amount span { padding: 0 0.75rem; font-size: 1rem; color: var(--muted); background: #f5f5f5; border-right: 1px solid rgba(0,0,0,0.1); height: 42px; display: flex; align-items: center; }
+    .custom-amount input { border: none; background: transparent; padding: 0.6rem 0.75rem; font-size: 0.95rem; color: var(--text); font-family: 'Inter', sans-serif; width: 100%; outline: none; }
+    .frequency-row { display: flex; gap: 8px; margin-bottom: 1rem; }
+    .freq-btn { flex: 1; padding: 0.55rem; border: 1px solid rgba(0,0,0,0.12); border-radius: 8px; background: #f5f5f5; font-size: 0.82rem; cursor: pointer; color: var(--muted); font-family: 'Inter', sans-serif; transition: all 0.15s; }
+    .freq-btn.selected { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .card-input-wrap { display: flex; align-items: center; border: 1px solid rgba(0,0,0,0.15); border-radius: 8px; overflow: hidden; }
+    .card-icon { padding: 0 0.75rem; color: var(--muted); }
+    .card-input-wrap input { border: none; background: transparent; padding: 0.6rem 0.5rem 0.6rem 0; font-size: 0.9rem; font-family: 'Inter', sans-serif; color: var(--text); width: 100%; outline: none; }
+    .donate-submit-btn { width: 100%; background: var(--navy); color: var(--white); border: none; border-radius: 12px; padding: 1rem; font-size: 1rem; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; margin-top: 0.5rem; }
+    .donate-submit-btn:hover { background: var(--navy-mid); }
+    .secure-note { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; }
+    .impact-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .impact-item { background: var(--white); border-radius: 10px; padding: 0.85rem; text-align: center; border: 1px solid var(--border); }
+    .impact-num { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); }
+    .impact-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+    .trust-item { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; }
+    .trust-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex-shrink: 0; }
+    .success-state { display: none; background: var(--success-bg); border: 1px solid var(--success); border-radius: 16px; padding: 2rem; text-align: center; }
+    .success-state.visible { display: block; }
+    .success-check { width: 52px; height: 52px; border-radius: 50%; background: var(--success); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .success-state h3 { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .success-state p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVF89Q5PG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-BWVF89Q5PG");
+  </script>
+</head>
+<body>
+
+<nav class="sp-nav sp-nav-dark">
+  <a href="../index.html" class="sp-logo">Scholar<span>Path</span></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a href="directory.html">School Directory</a></li>
+    <li><a href="share-story.html">Share Story</a></li>
+    <li><a href="apply.html">Apply</a></li>
+  </ul>
+  <a href="donate.html" class="nav-cta">Donate now</a>
+</nav>
+
+<div style="position:relative;background:var(--navy);padding:4rem 3rem 3rem;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:url('../assets/images/guide-hbcu.jpg') center/cover no-repeat;opacity:0.55;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,39,68,0.68) 0%,rgba(26,39,68,0.28) 100%);"></div>
+  <div style="position:relative;z-index:1;">
+    <p class="eyebrow">Make a difference today</p>
+    <h1 class="section-title" style="color:var(--white);font-size:2.5rem;max-width:560px;">Choose a scholarship<br>fund to support</h1>
+    <p style="color:rgba(255,255,255,0.7);max-width:500px;line-height:1.7;margin-top:0.75rem;">Every dollar goes directly to students at HBCUs, HSIs, community colleges, and beyond — no overhead taken.</p>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="left-col">
+    <div class="fund-card active" onclick="selectFund(this,'First-Generation Student Fund')">
+      <div class="fund-top"><span class="fund-name">First-Generation Student Fund</span><span class="tag tag-gold">Most needed</span></div>
+      <p class="fund-desc">Supporting students who are the first in their family to attend college — covering tuition gaps, books, and living expenses.</p>
+      <div class="progress-wrap"><div class="progress-bar" style="width:68%"></div></div>
+      <div class="progress-labels"><span><strong>$17,000</strong> raised</span><span>$25,000 goal</span></div>
+    </div>
+
+    <div class="fund-card" onclick="selectFund(this,'STEM Scholars Fund')">
+      <div class="fund-top"><span class="fund-name">STEM Scholars Fund</span><span class="tag tag-stem">Science & tech</span></div>
+      <p class="fund-desc">Helping underrepresented students pursue degrees in science, technology, engineering, and mathematics.</p>
+      <div class="progress-wrap"><div class="progress-bar" style="width:42%"></div></div>
+      <div class="progress-labels"><span><strong>$8,400</strong> raised</span><span>$20,000 goal</span></div>
+    </div>
+
+    <div class="fund-card" onclick="selectFund(this,'Arts & Humanities Fund')">
+      <div class="fund-top"><span class="fund-name">Arts & Humanities Fund</span><span class="tag tag-la">Creative</span></div>
+      <p class="fund-desc">For students pursuing creative fields — film, music, design, literature — who deserve support just as much as STEM students.</p>
+      <div class="progress-wrap"><div class="progress-bar" style="width:29%"></div></div>
+      <div class="progress-labels"><span><strong>$4,350</strong> raised</span><span>$15,000 goal</span></div>
+    </div>
+
+    <div class="impact-row">
+      <div class="impact-item"><div class="impact-num">127</div><div class="impact-label">Students funded so far</div></div>
+      <div class="impact-item"><div class="impact-num">$48K</div><div class="impact-label">Total awarded</div></div>
+      <div class="impact-item"><div class="impact-num">94%</div><div class="impact-label">Graduation rate</div></div>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="section-card" id="checkout-form">
+      <h3 id="selected-fund-label">Donating to: First-Generation Student Fund</h3>
+
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;font-weight:500;">Frequency</p>
+      <div class="frequency-row">
+        <button class="freq-btn selected" onclick="selectFreq(this)">One-time</button>
+        <button class="freq-btn" onclick="selectFreq(this)">Monthly</button>
+        <button class="freq-btn" onclick="selectFreq(this)">Annually</button>
+      </div>
+
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;font-weight:500;">Amount</p>
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="selectAmount(this,25)">$25</button>
+        <button class="amount-btn selected" onclick="selectAmount(this,50)">$50</button>
+        <button class="amount-btn" onclick="selectAmount(this,100)">$100</button>
+        <button class="amount-btn" onclick="selectAmount(this,250)">$250</button>
+        <button class="amount-btn" onclick="selectAmount(this,500)">$500</button>
+        <button class="amount-btn" onclick="selectAmount(this,0)">Other</button>
+      </div>
+      <div class="custom-amount" id="custom-wrap" style="display:none;">
+        <span>$</span>
+        <input type="number" id="custom-input" placeholder="Enter amount" min="1">
+      </div>
+
+      <hr class="divider">
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.75rem;font-weight:500;">Your information</p>
+      <div class="field-row">
+        <div class="field"><label>First name</label><input type="text" placeholder="Jordan"></div>
+        <div class="field"><label>Last name</label><input type="text" placeholder="Martinez"></div>
+      </div>
+      <div class="field"><label>Email address</label><input type="email" placeholder="you@email.com"></div>
+
+      <hr class="divider">
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.75rem;font-weight:500;">Payment details</p>
+
+      <!-- STRIPE ELEMENT PLACEHOLDER -->
+      <!-- When you connect Stripe, replace the fields below with:
+           <div id="stripe-card-element"></div>
+           and remove the manual card fields -->
+      <div class="field">
+        <label>Card number</label>
+        <div class="card-input-wrap">
+          <svg class="card-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <input type="text" placeholder="1234 5678 9012 3456">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Expiry</label><input type="text" placeholder="MM / YY"></div>
+        <div class="field"><label>CVC</label><input type="text" placeholder="123"></div>
+      </div>
+
+      <button class="donate-submit-btn" onclick="submitDonation()">Donate <span id="donate-amount-label">$50</span> now</button>
+      <div class="secure-note">
+        <svg width="10" height="12" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="5" width="8" height="6" rx="1"/><path d="M3 5V3.5a2 2 0 0 1 4 0V5"/></svg>
+        Secured by Stripe · 256-bit SSL encryption
+      </div>
+    </div>
+
+    <div class="success-state" id="success-state">
+      <div class="success-check">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Thank you for your gift!</h3>
+      <p>Your donation has been received. A receipt has been emailed to you. You'll also receive updates on the students your gift helps fund.</p>
+      <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--muted);">Your donation is tax-deductible as ScholarPath is a 501(c)(3) nonprofit.</p>
+    </div>
+
+    <div class="section-card">
+      <h3>Why donate through ScholarPath?</h3>
+      <div class="trust-item"><div class="trust-dot"></div>100% of donations go directly to students</div>
+      <div class="trust-item"><div class="trust-dot"></div>Fully tax-deductible — 501(c)(3) nonprofit</div>
+      <div class="trust-item"><div class="trust-dot"></div>Transparent fund tracking and impact reports</div>
+      <div class="trust-item"><div class="trust-dot"></div>Stripe-secured payment processing</div>
+      <div class="trust-item"><div class="trust-dot"></div>Cancel recurring donations anytime</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../index.html" class="logo">Scholar<span style="color:var(--gold);">Path</span></a>
+  <span>© 2025 ScholarPath. A 501(c)(3) nonprofit organization.</span>
+  <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="mailto:elliotgeise@thescholarpath.org">Contact</a></span>
+</footer>
+
+<script src="../js/shared.js"></script>
+<script>
+  let selectedAmount = 50;
+
+  function selectFund(el, name) {
+    document.querySelectorAll('.fund-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('selected-fund-label').textContent = 'Donating to: ' + name;
+  }
+
+  function selectFreq(el) {
+    document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function selectAmount(el, amt) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    const wrap = document.getElementById('custom-wrap');
+    if (amt === 0) {
+      wrap.style.display = 'flex';
+      selectedAmount = null;
+      document.getElementById('donate-amount-label').textContent = '';
+    } else {
+      wrap.style.display = 'none';
+      selectedAmount = amt;
+      document.getElementById('donate-amount-label').textContent = '$' + amt;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const ci = document.getElementById('custom-input');
+    if (ci) {
+      ci.addEventListener('input', function () {
+        const v = parseInt(this.value) || 0;
+        document.getElementById('donate-amount-label').textContent = v > 0 ? '$' + v : '';
+      });
+    }
+  });
+
+  function submitDonation() {
+    // TODO: Replace with Stripe payment intent call
+    // Example: stripe.confirmCardPayment(clientSecret, { payment_method: { card: cardElement } })
+    document.getElementById('checkout-form').style.display = 'none';
+    const s = document.getElementById('success-state');
+    s.classList.add('visible');
+    s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>

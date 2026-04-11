@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Share Your Story — ScholarPath</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .share-hero { background: var(--navy) url('../assets/images/school-header-vanderbilt.jpg') center/cover no-repeat; background-blend-mode: overlay; padding: 4rem 3rem 3rem; text-align: center; position: relative; }
+    .share-hero::before { content: ''; position: absolute; inset: 0; background: rgba(26,39,68,0.48); }
+    .share-hero > * { position: relative; z-index: 1; }
+    .share-hero h1 { font-family: 'Fraunces', serif; font-size: 2.8rem; color: #fff; margin-bottom: 1rem; }
+    .share-hero h1 em { color: var(--gold); font-style: normal; }
+    .share-hero p.sub { color: rgba(255,255,255,0.7); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+
+    .incentive-banner { background: var(--gold); padding: 1rem 3rem; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .incentive-banner p { font-size: 0.9rem; font-weight: 600; color: #fff; margin: 0; }
+
+    .container { max-width: 900px; margin: 4rem auto; padding: 0 2rem; }
+    
+    /* Prompt Section */
+    .prompt-header { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    .prompt-header h2 { font-family: 'Fraunces'; color: var(--navy); font-size: 1.8rem; }
+    
+    .prompt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+    .prompt-card { background: #fbfbf9; border: 1px solid var(--border); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 12px; transition: transform 0.2s; }
+    .prompt-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+    .prompt-card h4 { color: var(--navy); font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px; }
+    .prompt-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* The Form */
+    .story-form-card { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+    .field label { font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; display: block; font-size: 0.9rem; }
+    .field input, .field select, .field textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.95rem; transition: border-color 0.2s; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--gold); background: #fffbf5; }
+    
+    .submit-btn { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 12px; padding: 1.2rem; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-top: 1rem; }
+    .submit-btn:hover { background: var(--gold); transform: scale(1.01); }
+
+    #success-state { display: none; text-align: center; padding: 4rem 2rem; }
+    #success-state.active { display: block; }
+  </style>
+</head>
+<body>
+
+<nav class="sp-nav sp-nav-dark">
+  <a href="../index.html" class="sp-logo">Scholar<span>Path</span></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a href="directory.html">School Directory</a></li>
+    <li><a href="share-story.html">Share Story</a></li>
+    <li><a href="apply.html">Apply</a></li>
+  </ul>
+  <a href="donate.html" class="nav-cta">Donate now</a>
+</nav>
+
+<div class="share-hero">
+  <p class="eyebrow" style="color:var(--gold); letter-spacing: 2px;">BE THE GUIDE</p>
+  <h1>Tell the <em>Real</em> Story</h1>
+  <p class="sub">High schoolers see the brochures. We want them to hear from you. What is it actually like on the ground? Help them find the right path.</p>
+</div>
+
+<div class="incentive-banner">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+  <p>Bonus: Published stories earn 1 entry into our quarterly $500 scholarship drawing.</p>
+</div>
+
+<div class="container" id="main-content">
+  <div class="prompt-header">
+    <h2>Choose a prompt to start</h2>
+    <p style="color:var(--muted); font-size: 0.9rem;">You don't have to answer all of them—just the ones that matter to you.</p>
+  </div>
+
+  <div class="story-form-card">
+  <form id="story-form" action="https://formspree.io/f/mbdpbljz" method="POST">
+    
+    <div class="field-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" name="student_name" placeholder="Alex Martinez" required>
+      </div>
+      <div class="field">
+        <label>Your College</label>
+        <input type="text" name="college_name" placeholder="e.g. Howard University" required>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom: 2.5rem;">
+      <label>School Category</label>
+      <select name="school_category" required>
+        <option value="">Select a category...</option>
+        <option>Public University</option>
+        <option>Private University</option>
+        <option>HBCU</option>
+        <option>Community College</option>
+        <option>Trade/Vocational</option>
+      </select>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border); margin-bottom: 2.5rem;">
+
+    <div class="field" style="margin-bottom: 2rem;">
+      <label style="font-size: 1.1rem; color: var(--navy);">1. The "Brochure" vs. Reality</label>
+      <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.8rem;">What is one thing the school tour or website totally left out?</p>
+      <textarea name="brochure_vs_reality" style="min-height: 100px;" placeholder="Example: The campus looks great, but the library is always too loud to study..." required></textarea>
+    </div>
+
+    <div class="field" style="margin-bottom: 2rem;">
+      <label style="font-size: 1.1rem; color: var(--navy);">2. The "Wish I Knew"</label>
+      <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.8rem;">What do you wish someone told you before day one?</p>
+      <textarea name="wish_i_knew" style="min-height: 100px;" placeholder="Example: I wish I knew that most freshmen don't actually live in North Hall..." required></textarea>
+    </div>
+
+    <div class="field" style="margin-bottom: 2rem;">
+      <label style="font-size: 1.1rem; color: var(--navy);">3. Is it worth the cost?</label>
+      <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.8rem;">Given the tuition and the experience, would you choose this school again?</p>
+      <textarea name="roi_thoughts" style="min-height: 100px;" placeholder="Example: Yes, because the networking in the engineering department is worth every penny..." required></textarea>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border); margin-bottom: 2rem;">
+
+    <div class="field" style="margin-bottom: 2rem;">
+      <label>Your Email (for the $500 drawing)</label>
+      <input type="email" name="email" placeholder="you@example.com" required>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit My Real Talk & Enter Drawing</button>
+    <p style="text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 1rem;">By submitting, you agree to let ScholarPath share your story to help other students.</p>
+  </form>
+</div>
+
+<div class="container" id="success-state">
+  <div style="background: #f8fbf8; border: 1px solid #d4edda; padding: 4rem; border-radius: 20px;">
+    <h2 style="font-family: 'Fraunces'; color: #155724; font-size: 2.2rem; margin-bottom: 1rem;">Story Submitted!</h2>
+    <p style="color: #155724; line-height: 1.6; margin-bottom: 2rem;">Thank you for your honesty. Your experience will help a student make a better choice. We'll email you if your story is featured and to confirm your drawing entry.</p>
+    <a href="testimonials.html" style="color: var(--gold); font-weight: 700; text-decoration: none; font-size: 1.1rem;">← Browse other stories</a>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('story-form');
+  const mainContent = document.getElementById('main-content');
+  const successState = document.getElementById('success-state');
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const response = await fetch(e.target.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      mainContent.style.display = 'none';
+      successState.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert("Oops! There was a problem submitting your story.");
+    }
+  });
+</script>
+
+</body>
+</html>

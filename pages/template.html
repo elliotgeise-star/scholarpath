@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[School Name] Profile — ScholarPath</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <style>
+    .profile-layout { display: grid; grid-template-columns: 1fr 350px; gap: 3rem; padding: 3rem; max-width: 1200px; margin: 0 auto; }
+    .main-content h2 { font-family: 'Fraunces', serif; font-size: 2rem; color: var(--navy); margin-bottom: 1.5rem; }
+    .testimonial-section { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+    .testimonial-section h3 { font-size: 1.1rem; color: var(--gold); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .testimonial-section p { line-height: 1.8; color: var(--text); }
+    .sidebar-sticky { position: sticky; top: 100px; }
+    .breadcrumb-nav { padding: 1.5rem 3rem 0; max-width: 1200px; margin: 0 auto; }
+    .back-link { color: var(--gold); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    @media (max-width: 900px) { .profile-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div class="breadcrumb-nav">
+  <a href="../directory.html" class="back-link">← Back to School Directory</a>
+</div>
+
+<nav>
+  <a href="../../index.html" class="logo">Scholar<span>Path</span></a>
+  <ul>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../directory.html">School Directory</a></li>
+    <li><a href="../share-story.html">Share Story</a></li>
+    <li><a href="../apply.html">Apply</a></li>
+  </ul>
+  <a href="../donate.html" class="nav-cta">Donate now</a>
+</nav>
+
+<header class="page-hero">
+  <p class="eyebrow">School Profile</p>
+  <h1 class="section-title">[School Name]</h1>
+  <p class="sub" id="school-tagline">[City, State] • [Public/Private] Institution • [Student Body Size]</p>
+</header>
+
+<div class="profile-layout">
+  <main class="main-content">
+    <h2 style="border-bottom: 2px solid var(--gold); display: inline-block; margin-bottom: 2rem;">Student Real Talk (The Soul)</h2>
+    <section class="testimonial-section">
+      <h3>1. The Brochure vs. Reality</h3>
+      <p id="real-talk-1" style="color: var(--muted); font-style: italic;">[Placeholder: This section will display verified student insights about how the campus experience differs from the official marketing materials.]</p>
+    </section>
+    <section class="testimonial-section">
+      <h3>2. The "Wish I Knew"</h3>
+      <p id="real-talk-2" style="color: var(--muted); font-style: italic;">[Placeholder: This section will feature advice from current students and alumni regarding what they wish they had known before their first day.]</p>
+    </section>
+    <section class="testimonial-section">
+      <h3>3. Is it worth the cost? (ROI)</h3>
+      <p id="real-talk-3" style="color: var(--muted); font-style: italic;">[Placeholder: This section will contain student perspectives on the long-term value and career network provided by the institution.]</p>
+    </section>
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-sticky">
+      <h3 style="font-family: 'Fraunces', serif; color: var(--navy); margin-bottom: 1rem;">Analytical Stats (The Guide)</h3>
+      <div id="scorecard-container">
+        <div style="background: #eee; height: 200px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.8rem; text-align: center; padding: 1rem;">
+          [Scorecard Data from Government API will be injected here via shared.js]
+        </div>
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <h4 style="margin-bottom: 0.5rem; color: var(--navy);">Why this profile?</h4>
+        <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">
+          Our profiles merge official Department of Education data with verified student stories.
+        </p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script src="../../js/shared.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => initScorecard());
+</script>
+</body>
+</html>

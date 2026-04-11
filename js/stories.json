@@ -1,0 +1,12 @@
+{
+  "default": {
+    "brochure": "We are currently collecting 'Real Talk' for this school. Check back soon for student perspectives!",
+    "wish": "Student community advice for this school is arriving soon.",
+    "roi": "Our team is analyzing the ROI and career outcomes for this institution."
+  },
+  "howard": {
+    "brochure": "The brochures show the beauty of the Yard and the legacy, which is real. But it's also a 'sink or swim' environment that teaches you grit.",
+    "wish": "I wish I knew how competitive the internships and clubs are. Join a pre-professional org early!",
+    "roi": "Howard is an investment. The ROI is found in the alumni network, which opens doors in tech and law."
+  }
+}

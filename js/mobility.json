@@ -1,0 +1,356 @@
+{
+  "southern-new-hampshire-university": {
+    "access_rate": 5.5832682,
+    "mobility_rate": 1.4405891,
+    "median_parent_income": 85800,
+    "median_child_earnings": 42700
+  },
+  "grand-canyon-university": {
+    "access_rate": 6.0822115,
+    "mobility_rate": 0.8643682,
+    "median_parent_income": 90000,
+    "median_child_earnings": 36900
+  },
+  "texas-a-m-university-college-station": {
+    "access_rate": 3.2128136,
+    "mobility_rate": 1.4348202,
+    "median_parent_income": 119400,
+    "median_child_earnings": 59400
+  },
+  "university-of-central-florida": {
+    "access_rate": 7.2166281,
+    "mobility_rate": 2.5976532,
+    "median_parent_income": 91200,
+    "median_child_earnings": 46000
+  },
+  "purdue-university-main-campus": {
+    "access_rate": 3.1833344,
+    "mobility_rate": 1.0032992,
+    "median_parent_income": 103200,
+    "median_child_earnings": 48800
+  },
+  "brigham-young-university-idaho": {
+    "access_rate": 4.1382079,
+    "mobility_rate": 0.75338709,
+    "median_parent_income": 92600,
+    "median_child_earnings": 22600
+  },
+  "the-university-of-texas-at-austin": {
+    "access_rate": 4.9989672,
+    "mobility_rate": 2.2225699,
+    "median_parent_income": 125100,
+    "median_child_earnings": 57900
+  },
+  "tarrant-county-college-district": {
+    "access_rate": 10.46481,
+    "mobility_rate": 1.6360326,
+    "median_parent_income": 75400,
+    "median_child_earnings": 32900
+  },
+  "pennsylvania-state-university-main-campus": {
+    "access_rate": 5.827394,
+    "mobility_rate": 1.7627659,
+    "median_parent_income": 95400,
+    "median_child_earnings": 50900
+  },
+  "kennesaw-state-university": {
+    "access_rate": 4.9236794,
+    "mobility_rate": 1.1789771,
+    "median_parent_income": 99900,
+    "median_child_earnings": 36600
+  },
+  "michigan-state-university": {
+    "access_rate": 4.0914698,
+    "mobility_rate": 1.3878376,
+    "median_parent_income": 120400,
+    "median_child_earnings": 52600
+  },
+  "houston-community-college": {
+    "access_rate": 21.898758,
+    "mobility_rate": 3.8930709,
+    "median_parent_income": 49200,
+    "median_child_earnings": 31400
+  },
+  "florida-international-university": {
+    "access_rate": 15.013785,
+    "mobility_rate": 5.2249579,
+    "median_parent_income": 66700,
+    "median_child_earnings": 46800
+  },
+  "valencia-college": {
+    "access_rate": 15.688421,
+    "mobility_rate": 2.1379004,
+    "median_parent_income": 62000,
+    "median_child_earnings": 29600
+  },
+  "california-state-university-fullerton": {
+    "access_rate": 12.116247,
+    "mobility_rate": 4.7993155,
+    "median_parent_income": 83300,
+    "median_child_earnings": 47800
+  },
+  "university-of-south-florida": {
+    "access_rate": 9.5504475,
+    "mobility_rate": 2.7492893,
+    "median_parent_income": 80500,
+    "median_child_earnings": 42400
+  },
+  "texas-state-university": {
+    "access_rate": 6.118176,
+    "mobility_rate": 1.4921669,
+    "median_parent_income": 100900,
+    "median_child_earnings": 44000
+  },
+  "california-state-university-long-beach": {
+    "access_rate": 11.606012,
+    "mobility_rate": 4.4307065,
+    "median_parent_income": 85800,
+    "median_child_earnings": 48800
+  },
+  "university-of-florida": {
+    "access_rate": 6.0965686,
+    "mobility_rate": 2.6087112,
+    "median_parent_income": 106100,
+    "median_child_earnings": 56700
+  },
+  "san-diego-state-university": {
+    "access_rate": 8.9785795,
+    "mobility_rate": 3.6618357,
+    "median_parent_income": 100500,
+    "median_child_earnings": 51000
+  },
+  "university-of-california-san-diego": {
+    "access_rate": 8.777235,
+    "mobility_rate": 4.8327465,
+    "median_parent_income": 111300,
+    "median_child_earnings": 65300
+  },
+  "university-of-north-texas": {
+    "access_rate": 6.411983,
+    "mobility_rate": 1.4619863,
+    "median_parent_income": 98700,
+    "median_child_earnings": 42000
+  },
+  "university-of-michigan-ann-arbor": {
+    "access_rate": 2.9959381,
+    "mobility_rate": 1.5084569,
+    "median_parent_income": 156100,
+    "median_child_earnings": 68700
+  },
+  "university-of-california-los-angeles": {
+    "access_rate": 10.242689,
+    "mobility_rate": 5.596252,
+    "median_parent_income": 105500,
+    "median_child_earnings": 65800
+  },
+  "the-university-of-alabama": {
+    "access_rate": 6.4959636,
+    "mobility_rate": 1.6160508,
+    "median_parent_income": 106100,
+    "median_child_earnings": 44300
+  },
+  "university-of-california-berkeley": {
+    "access_rate": 8.8423376,
+    "mobility_rate": 4.8850956,
+    "median_parent_income": 114700,
+    "median_child_earnings": 67900
+  },
+  "northern-virginia-community-college": {
+    "access_rate": 9.6939716,
+    "mobility_rate": 2.51773,
+    "median_parent_income": 86200,
+    "median_child_earnings": 37300
+  },
+  "brigham-young-university": {
+    "access_rate": 2.2001562,
+    "mobility_rate": 0.65053946,
+    "median_parent_income": 119600,
+    "median_child_earnings": 32600
+  },
+  "california-state-university-northridge": {
+    "access_rate": 19.794104,
+    "mobility_rate": 6.3248596,
+    "median_parent_income": 61100,
+    "median_child_earnings": 44100
+  },
+  "texas-tech-university": {
+    "access_rate": 4.5976319,
+    "mobility_rate": 1.5510181,
+    "median_parent_income": 110300,
+    "median_child_earnings": 48800
+  },
+  "the-university-of-texas-at-arlington": {
+    "access_rate": 9.3281984,
+    "mobility_rate": 2.5995216,
+    "median_parent_income": 83600,
+    "median_child_earnings": 46500
+  },
+  "university-of-california-davis": {
+    "access_rate": 8.5837574,
+    "mobility_rate": 4.4437985,
+    "median_parent_income": 109400,
+    "median_child_earnings": 61600
+  },
+  "florida-state-university": {
+    "access_rate": 6.3315511,
+    "mobility_rate": 2.1649535,
+    "median_parent_income": 100500,
+    "median_child_earnings": 46400
+  },
+  "university-of-georgia": {
+    "access_rate": 3.0116081,
+    "mobility_rate": 1.061404,
+    "median_parent_income": 127400,
+    "median_child_earnings": 49900
+  },
+  "purdue-university-global": {
+    "access_rate": 3.1833344,
+    "mobility_rate": 1.0032992,
+    "median_parent_income": 103200,
+    "median_child_earnings": 48800
+  },
+  "oregon-state-university": {
+    "access_rate": 5.0318747,
+    "mobility_rate": 1.6455978,
+    "median_parent_income": 100600,
+    "median_child_earnings": 50000
+  },
+  "the-university-of-texas-at-san-antonio": {
+    "access_rate": 12.804704,
+    "mobility_rate": 2.9185917,
+    "median_parent_income": 74300,
+    "median_child_earnings": 43000
+  },
+  "university-of-california-irvine": {
+    "access_rate": 12.246905,
+    "mobility_rate": 6.7682147,
+    "median_parent_income": 92100,
+    "median_child_earnings": 60400
+  },
+  "university-of-cincinnati-main-campus": {
+    "access_rate": 6.5327711,
+    "mobility_rate": 1.0363419,
+    "median_parent_income": 85200,
+    "median_child_earnings": 39100
+  },
+  "university-of-arkansas": {
+    "access_rate": 7.1958208,
+    "mobility_rate": 2.3464656,
+    "median_parent_income": 93400,
+    "median_child_earnings": 45800
+  },
+  "new-york-university": {
+    "access_rate": 6.9385424,
+    "mobility_rate": 3.6272709,
+    "median_parent_income": 130500,
+    "median_child_earnings": 58100
+  },
+  "utah-valley-university": {
+    "access_rate": 4.9795852,
+    "mobility_rate": 0.92348391,
+    "median_parent_income": 89800,
+    "median_child_earnings": 29300
+  },
+  "california-state-university-sacramento": {
+    "access_rate": 10.452874,
+    "mobility_rate": 3.3332288,
+    "median_parent_income": 88700,
+    "median_child_earnings": 47900
+  },
+  "george-mason-university": {
+    "access_rate": 6.1455531,
+    "mobility_rate": 3.0900524,
+    "median_parent_income": 107500,
+    "median_child_earnings": 56500
+  },
+  "san-jose-state-university": {
+    "access_rate": 11.658612,
+    "mobility_rate": 5.4279132,
+    "median_parent_income": 91700,
+    "median_child_earnings": 56500
+  },
+  "university-of-utah": {
+    "access_rate": 3.6872406,
+    "mobility_rate": 1.1315004,
+    "median_parent_income": 107400,
+    "median_child_earnings": 41400
+  },
+  "college-of-southern-nevada": {
+    "access_rate": 12.047299,
+    "mobility_rate": 1.5094155,
+    "median_parent_income": 66800,
+    "median_child_earnings": 28900
+  },
+  "auburn-university": {
+    "access_rate": 3.3321195,
+    "mobility_rate": 1.0658238,
+    "median_parent_income": 123200,
+    "median_child_earnings": 47300
+  },
+  "georgia-state-university": {
+    "access_rate": 9.3061905,
+    "mobility_rate": 2.0784898,
+    "median_parent_income": 82200,
+    "median_child_earnings": 38900
+  },
+  "full-sail-university": {
+    "access_rate": 10.621342,
+    "mobility_rate": 1.4656409,
+    "median_parent_income": 80400,
+    "median_child_earnings": 28700
+  },
+  "colorado-state-university-fort-collins": {
+    "access_rate": 3.160794,
+    "mobility_rate": 1.1196307,
+    "median_parent_income": 115400,
+    "median_child_earnings": 45800
+  },
+  "california-state-polytechnic-university-pomona": {
+    "access_rate": 14.929721,
+    "mobility_rate": 6.833405,
+    "median_parent_income": 80200,
+    "median_child_earnings": 55100
+  },
+  "broward-college": {
+    "access_rate": 19.551702,
+    "mobility_rate": 2.7686183,
+    "median_parent_income": 54900,
+    "median_child_earnings": 30200
+  },
+  "university-of-kentucky": {
+    "access_rate": 5.5919042,
+    "mobility_rate": 0.95957255,
+    "median_parent_income": 98800,
+    "median_child_earnings": 40100
+  },
+  "university-of-nevada-las-vegas": {
+    "access_rate": 6.5142937,
+    "mobility_rate": 1.8881215,
+    "median_parent_income": 90400,
+    "median_child_earnings": 41500
+  },
+  "el-paso-community-college": {
+    "access_rate": 40.920174,
+    "mobility_rate": 4.7745953,
+    "median_parent_income": 29200,
+    "median_child_earnings": 25700
+  },
+  "florida-atlantic-university": {
+    "access_rate": 11.623572,
+    "mobility_rate": 3.0703149,
+    "median_parent_income": 77100,
+    "median_child_earnings": 40500
+  },
+  "clemson-university": {
+    "access_rate": 3.1747334,
+    "mobility_rate": 1.2014058,
+    "median_parent_income": 120200,
+    "median_child_earnings": 52300
+  },
+  "university-of-california-santa-barbara": {
+    "access_rate": 6.211503,
+    "mobility_rate": 3.0754454,
+    "median_parent_income": 124000,
+    "median_child_earnings": 58800
+  }
+}

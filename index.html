@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScholarPath — Fund Dreams. Find Your Path.</title>
+  <meta name="description" content="ScholarPath is a nonprofit scholarship platform connecting donors with students. Read real college testimonials and find the school that fits your story." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .hero-line-fund   { display: block; font-family: 'Fraunces', serif; font-size: 5rem; font-weight: 700; font-style: normal; color: var(--white); line-height: 1; letter-spacing: -2px; }
+    .hero-line-dreams { display: block; font-family: 'Fraunces', serif; font-size: 5rem; font-weight: 700; font-style: italic; color: var(--gold); line-height: 1; letter-spacing: -2px; }
+    .hero-line-sub    { display: block; font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 400; font-style: normal; color: rgba(255,255,255,0.55); line-height: 1.2; letter-spacing: -0.5px; margin-top: 0.4rem; }
+    .btn-outline-white { background: transparent; color: var(--white); padding: 0.85rem 2rem; border-radius: 50px; border: 1.5px solid rgba(255,255,255,0.4); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: border-color 0.2s; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.8); }
+    .steps-section { padding: 5rem 3.5rem; background: var(--white); }
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .step-card { position: relative; border-radius: 16px; overflow: hidden; min-height: 260px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .step-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .step-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,39,68,0.88) 0%, rgba(26,39,68,0.38) 100%); }
+    .step-card-body { position: relative; z-index: 1; padding: 1.5rem; }
+    .step-num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.6rem; }
+    .step-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 0.4rem; }
+    .step-card p { font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+    .colleges-section { background: var(--navy); padding: 5rem 3.5rem; }
+    .college-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .college-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 1.5rem; transition: background 0.2s; }
+    .college-card:hover { background: rgba(255,255,255,0.1); }
+    .college-card h4 { font-size: 1rem; color: var(--white); margin-bottom: 0.4rem; }
+    .college-card p { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.55; }
+    .college-card a { display: inline-block; margin-top: 1rem; font-size: 0.8rem; color: var(--gold); font-weight: 500; text-decoration: none; }
+    .fafsa-section { background: var(--cream); padding: 5rem 3.5rem; }
+    .fafsa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+    .fafsa-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; position: relative; overflow: hidden; }
+    .fafsa-card.urgent { border-color: #e07b39; }
+    .fafsa-card.passed { opacity: 0.55; }
+    .fafsa-card .deadline-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 0.5rem; }
+    .fafsa-card .deadline-name { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.25rem; line-height: 1.3; }
+    .fafsa-card .deadline-date { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .fafsa-countdown { display: flex; gap: 8px; }
+    .fafsa-count-unit { background: var(--navy); color: var(--white); border-radius: 8px; padding: 8px 10px; text-align: center; min-width: 46px; }
+    .fafsa-count-unit .num { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; line-height: 1; display: block; }
+    .fafsa-count-unit .unit { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.65; display: block; margin-top: 2px; }
+    .fafsa-card.urgent .fafsa-count-unit { background: #e07b39; }
+    .fafsa-card.passed .fafsa-count-unit { background: var(--muted); }
+    .passed-badge { display: inline-block; background: #f0f0f0; color: var(--muted); border-radius: 20px; font-size: 0.72rem; padding: 3px 10px; margin-bottom: 1rem; }
+    .fafsa-share { margin-top: 2rem; display: flex; align-items: center; gap: 1rem; }
+    .fafsa-share-btn { background: var(--navy); color: var(--white); border: none; border-radius: 50px; padding: 0.6rem 1.4rem; font-size: 0.85rem; font-family: 'Inter', sans-serif; cursor: pointer; font-weight: 500; }
+    .fafsa-share-btn:hover { opacity: 0.88; }
+    .fafsa-share small { font-size: 0.78rem; color: var(--muted); }
+    @media (max-width: 900px) { .fafsa-grid { grid-template-columns: 1fr; } }
+    .footer-cta { background: var(--navy) url('assets/images/pexels-cero-cero-2150720468-31290544.jpg') center/cover no-repeat; background-blend-mode: overlay; padding: 5rem 3.5rem; text-align: center; position: relative; }
+    .footer-cta::before { content: ''; position: absolute; inset: 0; background: rgba(26,39,68,0.65); }
+    .footer-cta > * { position: relative; z-index: 1; }
+    .footer-cta .section-title { color: var(--white) !important; margin: 0 auto 1rem; }
+    .footer-cta p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-size: 1rem; }
+    .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .cta-buttons .btn-primary, .cta-buttons .btn-outline-white { border-radius: 8px; }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVF89Q5PG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-BWVF89Q5PG");
+  </script>
+</head>
+<body>
+
+<section class="sp-hero">
+  <div class="sp-hero-bg" style="background-image: url('assets/images/hero-campus.jpg');"></div>
+  <div class="sp-hero-overlay"></div>
+
+  <nav class="sp-nav sp-nav-overlay">
+    <a href="index.html" class="sp-logo">Scholar<span>Path</span></a>
+    <ul>
+      <li><a href="pages/about.html">About</a></li>
+      <li><a href="pages/directory.html">School Directory</a></li>
+      <li><a href="pages/share-story.html">Share Story</a></li>
+      <li><a href="pages/apply.html">Apply</a></li>
+    </ul>
+    <a href="pages/donate.html" class="nav-cta">Donate now</a>
+  </nav>
+
+  <div class="sp-hero-content">
+    <p class="eyebrow">Empowering the next generation</p>
+    <h1 class="sp-hero-title">
+      <span class="hero-line-fund">Fund</span><br>
+      <span class="hero-line-dreams">Dreams.</span><br>
+      <span class="hero-line-sub">Find your path.</span>
+    </h1>
+    <p class="sp-hero-sub">Real stories from real students. Scholarships funded by people like you. Honest guides to help you choose the college that's right for <em>you</em>.</p>
+    <div class="sp-hero-actions">
+      <a href="pages/donate.html" class="btn-primary" style="border-radius: 8px;">Donate to a scholarship</a>
+      <a href="pages/directory.html" class="btn-outline-white" style="border-radius: 8px;">Browse Schools</a>
+    </div>
+  </div>
+</section>
+
+<div class="sp-stats-strip">
+  <div class="sp-stat">
+    <div class="sp-stat-num">$48K</div>
+    <div class="sp-stat-label">Total awarded</div>
+  </div>
+  <div class="sp-stat">
+    <div class="sp-stat-num">127</div>
+    <div class="sp-stat-label">Students helped</div>
+  </div>
+  <div class="sp-stat">
+    <div class="sp-stat-num">94%</div>
+    <div class="sp-stat-label">Graduation rate</div>
+  </div>
+  <div class="sp-stat">
+    <div class="sp-stat-num">39</div>
+    <div class="sp-stat-label">Partner schools</div>
+  </div>
+</div>
+
+<section class="steps-section">
+  <p class="eyebrow">How it works</p>
+  <h2 class="section-title">Simple steps to make a real difference</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-card-bg" style="background-image: url('assets/images/difference%201.jpg');"></div>
+      <div class="step-card-overlay"></div>
+      <div class="step-card-body"><div class="step-num">01</div><h4>Browse scholarships</h4><p>Explore active funds created for students in various fields and backgrounds.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-card-bg" style="background-image: url('assets/images/difference2.jpg');"></div>
+      <div class="step-card-overlay"></div>
+      <div class="step-card-body"><div class="step-num">02</div><h4>Make a donation</h4><p>Give any amount — one-time or recurring. 100% goes directly to the scholarship fund.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-card-bg" style="background-image: url('assets/images/differecnce%203.jpg');"></div>
+      <div class="step-card-overlay"></div>
+      <div class="step-card-body"><div class="step-num">03</div><h4>Explore schools</h4><p>Read unified profiles combining real student reviews with official analytical data.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-card-bg" style="background-image: url('assets/images/difference4.jpg');"></div>
+      <div class="step-card-overlay"></div>
+      <div class="step-card-body"><div class="step-num">04</div><h4>Apply for funding</h4><p>Secure a scholarship to the school that actually fits your personal and career goals.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="fafsa-section">
+  <p class="eyebrow">Don't miss your window</p>
+  <h2 class="section-title">FAFSA Deadlines</h2>
+  <p style="color:var(--muted); max-width:520px; font-size:0.95rem; line-height:1.7;">Missing a FAFSA deadline can cost you thousands in free aid. These are the dates every student needs to know.</p>
+
+  <div class="fafsa-grid" id="fafsa-grid">
+    <!-- populated by script below -->
+  </div>
+
+  <div class="fafsa-share">
+    <button class="fafsa-share-btn" id="fafsa-share-btn">Share these deadlines</button>
+    <small>Bookmark this page — deadlines update automatically each aid year.</small>
+  </div>
+</section>
+
+<section class="colleges-section">
+  <p class="eyebrow" style="color:var(--gold);">School Profiles</p>
+  <h2 class="section-title" style="color:var(--white);margin-bottom:2rem;">Find the school that fits your story</h2>
+  <div class="college-cards">
+    <div class="college-card" style="padding:0;overflow:hidden;">
+      <!-- PLACEHOLDER: replace school-howard.jpg with official Howard University photo -->
+      <div style="height:160px;background:url('assets/images/school-howard.jpg') center/cover no-repeat;"></div>
+      <div style="padding:1.25rem 1.5rem;">
+        <span class="tag tag-hbcu mb-1">HBCU</span>
+        <h4>Why Howard University changed my life</h4>
+        <p>For students seeking community, legacy, and a powerful professional network.</p>
+        <a href="pages/schools/template.html?school=howard-university">View profile →</a>
+      </div>
+    </div>
+    <div class="college-card" style="padding:0;overflow:hidden;">
+      <!-- PLACEHOLDER: replace school-miami.jpg with official Miami Dade College photo -->
+      <div style="height:160px;background:url('assets/images/school-miami.jpg') center/cover no-repeat;"></div>
+      <div style="padding:1.25rem 1.5rem;">
+        <span class="tag tag-cc mb-1">Community college</span>
+        <h4>The Community College Power Move</h4>
+        <p>For first-gen students and working students who need flexibility before a 4-year.</p>
+        <a href="pages/directory.html">Browse CCs →</a>
+      </div>
+    </div>
+    <div class="college-card" style="padding:0;overflow:hidden;">
+      <!-- PLACEHOLDER: replace school-uw.jpg with an appropriate liberal arts campus photo -->
+      <div style="height:160px;background:url('assets/images/school-uw.jpg') center/cover no-repeat;"></div>
+      <div style="padding:1.25rem 1.5rem;">
+        <span class="tag tag-la mb-1">Liberal arts</span>
+        <h4>Small schools, big thinking</h4>
+        <p>For curious, interdisciplinary thinkers who thrive with small class sizes.</p>
+        <a href="pages/directory.html">Browse Liberal Arts →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta">
+  <p class="eyebrow" style="text-align:center;">Get involved</p>
+  <h2 class="section-title">Ready to change a student's future?</h2>
+  <p>Whether you donate, share your story, or simply spread the word — every action matters.</p>
+  <div class="cta-buttons">
+    <a href="pages/donate.html" class="btn-primary">Donate to a scholarship</a>
+    <a href="pages/directory.html" class="btn-outline-white">Browse Schools</a>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="logo">Scholar<span style="color:var(--gold);">Path</span></a>
+  <span>© 2025 ScholarPath. A 501(c)(3) nonprofit organization.</span>
+  <span><a href="pages/privacy.html">Privacy</a> · <a href="pages/terms.html">Terms</a> · <a href="mailto:elliotgeise@thescholarpath.org">Contact</a></span>
+</footer>
+
+<script src="js/shared.js"></script>
+<script>
+(function () {
+    // FAFSA deadlines — update these each aid year
+    const DEADLINES = [
+        {
+            name: 'Federal FAFSA Deadline',
+            sub: '2025–26 Aid Year',
+            date: new Date('2026-06-30T23:59:59'),
+            urgentDays: 60,
+            link: 'https://studentaid.gov/apply-for-aid/fafsa/filling-out',
+        },
+        {
+            name: 'State Priority Deadlines',
+            sub: 'Varies by state — check yours',
+            date: null, // no single date
+            stateLink: true,
+            link: 'https://studentaid.gov/apply-for-aid/fafsa/fafsa-deadlines',
+        },
+        {
+            name: '2026–27 FAFSA Opens',
+            sub: 'Start early for maximum aid',
+            date: new Date('2026-12-01T00:00:00'),
+            urgentDays: 0,
+            link: 'https://studentaid.gov/apply-for-aid/fafsa/filling-out',
+        },
+    ];
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function renderCard(dl) {
+        const now = new Date();
+
+        if (dl.stateLink) {
+            return `
+                <div class="fafsa-card">
+                    <div class="deadline-label">Varies by state</div>
+                    <div class="deadline-name">${dl.name}</div>
+                    <div class="deadline-date">${dl.sub}</div>
+                    <div class="fafsa-countdown">
+                        <div class="fafsa-count-unit" style="min-width:auto; padding:8px 14px;">
+                            <span class="num" style="font-size:1rem;">Check now</span>
+                        </div>
+                    </div>
+                    <a href="${dl.link}" target="_blank" rel="noopener"
+                       style="display:inline-block;margin-top:1rem;font-size:0.8rem;color:var(--gold);font-weight:500;text-decoration:none;">
+                        View state deadlines →
+                    </a>
+                </div>`;
+        }
+
+        const diff = dl.date - now;
+        const passed = diff <= 0;
+        const days = passed ? 0 : Math.floor(diff / 864e5);
+        const hours = passed ? 0 : Math.floor((diff % 864e5) / 36e5);
+        const mins = passed ? 0 : Math.floor((diff % 36e5) / 6e4);
+        const urgent = !passed && days <= dl.urgentDays;
+        const classes = ['fafsa-card', passed ? 'passed' : '', urgent ? 'urgent' : ''].filter(Boolean).join(' ');
+        const dateStr = dl.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+        return `
+            <div class="${classes}" data-deadline="${dl.date.toISOString()}">
+                <div class="deadline-label">${dl.sub}</div>
+                <div class="deadline-name">${dl.name}</div>
+                <div class="deadline-date">${dateStr}</div>
+                ${passed ? '<span class="passed-badge">Deadline passed</span>' : ''}
+                <div class="fafsa-countdown">
+                    <div class="fafsa-count-unit"><span class="num days">${days}</span><span class="unit">days</span></div>
+                    <div class="fafsa-count-unit"><span class="num hrs">${pad(hours)}</span><span class="unit">hrs</span></div>
+                    <div class="fafsa-count-unit"><span class="num mins">${pad(mins)}</span><span class="unit">min</span></div>
+                </div>
+                <a href="${dl.link}" target="_blank" rel="noopener"
+                   style="display:inline-block;margin-top:1rem;font-size:0.8rem;color:var(--gold);font-weight:500;text-decoration:none;">
+                    ${passed ? 'Prepare for next year →' : 'Complete your FAFSA →'}
+                </a>
+            </div>`;
+    }
+
+    const grid = document.getElementById('fafsa-grid');
+    grid.innerHTML = DEADLINES.map(renderCard).join('');
+
+    // Live tick every 30 s for non-passed cards
+    setInterval(() => {
+        const now = new Date();
+        grid.querySelectorAll('.fafsa-card[data-deadline]').forEach(card => {
+            const target = new Date(card.dataset.deadline);
+            const diff = target - now;
+            if (diff <= 0) return;
+            const days  = Math.floor(diff / 864e5);
+            const hours = Math.floor((diff % 864e5) / 36e5);
+            const mins  = Math.floor((diff % 36e5) / 6e4);
+            card.querySelector('.days').textContent = days;
+            card.querySelector('.hrs').textContent  = pad(hours);
+            card.querySelector('.mins').textContent = pad(mins);
+        });
+    }, 30000);
+
+    // Share button
+    document.getElementById('fafsa-share-btn').addEventListener('click', () => {
+        const text = 'FAFSA Deadlines you need to know:\n' +
+            DEADLINES.filter(d => d.date).map(d => {
+                const diff = d.date - new Date();
+                const days = Math.max(0, Math.floor(diff / 864e5));
+                const dateStr = d.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                return `• ${d.name} (${d.sub}): ${dateStr} — ${days > 0 ? days + ' days left' : 'passed'}`;
+            }).join('\n') +
+            '\n\nTrack all deadlines: ' + window.location.href;
+
+        if (navigator.share) {
+            navigator.share({ title: 'FAFSA Deadlines — ScholarPath', text });
+        } else {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('fafsa-share-btn');
+                btn.textContent = 'Copied to clipboard!';
+                setTimeout(() => { btn.textContent = 'Share these deadlines'; }, 2500);
+            });
+        }
+    });
+})();
+</script>
+</body>
+</html>

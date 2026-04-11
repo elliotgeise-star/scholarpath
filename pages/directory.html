@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Directory — ScholarPath</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ── Search + filter bar ───────────────────────────────────────────── */
+    .controls-wrap { background: var(--cream); border-bottom: 1px solid var(--border); padding: 1.25rem 3rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+    .search-input { flex: 1 1 260px; padding: 0.7rem 1.1rem; border-radius: 50px; border: 1px solid var(--border); font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; background: var(--white); }
+    .search-input:focus { border-color: var(--gold); }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .filter-btn { background: var(--white); color: var(--navy); border: 1.5px solid var(--border); border-radius: 50px; padding: 0.45rem 1rem; font-size: 0.82rem; font-family: 'Inter', sans-serif; cursor: pointer; font-weight: 500; white-space: nowrap; transition: all 0.15s; }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    /* special "value" filters get gold accent */
+    .filter-btn.value-filter.active { background: #b8860b; border-color: #b8860b; }
+    .filter-btn.value-filter:hover  { border-color: #b8860b; color: #b8860b; }
+
+    .filter-divider { width: 1px; height: 24px; background: var(--border); margin: 0 0.25rem; }
+
+    /* ── Results meta ──────────────────────────────────────────────────── */
+    .results-meta { padding: 1.5rem 3rem 0.5rem; font-size: 0.82rem; color: var(--muted); }
+
+    /* ── Category layout ───────────────────────────────────────────────── */
+    .dir-cat { border-bottom: 1px solid rgba(210,185,150,0.25); }
+    .dir-cat:last-child { border-bottom: none; }
+
+    .dir-cat-header {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      min-height: 140px;
+      background: #FFFBF5;
+    }
+    .dir-cat-left {
+      padding: 2rem 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .dir-cat-eyebrow {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #D4822A;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .dir-cat-title {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1A2744;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .dir-cat-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+    .dir-cat-desc {
+      font-size: 13px;
+      color: #8A7D6E;
+      line-height: 1.55;
+      max-width: 400px;
+    }
+    .dir-cat-count {
+      font-size: 11px;
+      color: #C0B4A8;
+      margin-top: 0.5rem;
+    }
+    .dir-cat-photo {
+      background: linear-gradient(135deg, #2A3848 0%, #1A2744 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dir-cat-photo.hsi     { background: linear-gradient(135deg, #1A4030 0%, #0D3020 100%); }
+    .dir-cat-photo.cc      { background: linear-gradient(135deg, #4A3010 0%, #2A1A08 100%); }
+    .dir-cat-photo.public  { background: linear-gradient(135deg, #2A3A50 0%, #1A2838 100%); }
+    .dir-cat-photo.private { background: linear-gradient(135deg, #3A2A40 0%, #281828 100%); }
+
+    .dir-school-list {
+      background: white;
+      border-top: 1px solid rgba(210,185,150,0.2);
+    }
+    .dir-school-row {
+      display: flex;
+      align-items: center;
+      padding: 0.9rem 2rem;
+      border-bottom: 1px solid rgba(210,185,150,0.15);
+      gap: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .dir-school-row:last-of-type { border-bottom: none; }
+    .dir-school-row:hover { background: #FFFBF5; }
+    .dir-school-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1A2744;
+      flex: 1;
+      min-width: 0;
+    }
+    .dir-school-stats {
+      display: flex;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+    .dir-school-stat { text-align: right; }
+    .dir-school-stat-n {
+      font-family: 'Fraunces', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1A2744;
+      letter-spacing: -0.3px;
+      line-height: 1;
+    }
+    .dir-school-stat-l {
+      font-size: 9px;
+      color: #C0B4A8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .dir-school-arrow {
+      font-size: 12px;
+      color: #D4822A;
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+    .dir-show-more {
+      display: block;
+      width: 100%;
+      padding: 0.85rem 2rem;
+      font-size: 12px;
+      color: #D4822A;
+      font-weight: 500;
+      background: white;
+      border: none;
+      border-top: 1px solid rgba(210,185,150,0.15);
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .dir-show-more:hover { background: #FFFBF5; }
+    .dir-school-row.hidden { display: none; }
+
+    .empty-state { text-align: center; padding: 4rem 2rem; color: var(--muted); }
+    .empty-state h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--navy); }
+
+    @media (max-width: 700px) {
+      .controls-wrap { padding: 1rem 1.25rem; }
+      .results-meta { padding: 1rem 1.25rem 0.5rem; }
+      .dir-cat-header { grid-template-columns: 1fr; }
+      .dir-cat-photo { display: none; }
+      .dir-school-stats { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sp-dir-hero">
+  <div class="sp-dir-hero-bg" style="background-image: url('../assets/images/dir-hero.jpg');"></div>
+  <div class="sp-dir-hero-overlay"></div>
+
+  <nav class="sp-nav sp-dir-hero-nav">
+    <a href="../index.html" class="sp-logo">Scholar<span>Path</span></a>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="directory.html">School Directory</a></li>
+      <li><a href="share-story.html">Share Story</a></li>
+      <li><a href="apply.html">Apply</a></li>
+    </ul>
+    <a href="donate.html" class="nav-cta">Donate now</a>
+  </nav>
+
+  <div class="sp-dir-hero-content">
+    <p class="eyebrow" style="color: var(--gold);">College Resource Hub</p>
+    <h1>Find Your <em style="font-style:italic;">Better</em> Fit</h1>
+    <p>Every school below is selected for first-gen and underserved students — HBCUs, HSIs, and high-access community colleges with real data to back them up.</p>
+  </div>
+</div>
+
+<!-- ── Controls ────────────────────────────────────────────────────────────── -->
+<div class="controls-wrap">
+  <input type="text" class="search-input" id="school-search" placeholder="Search by name…" aria-label="Search schools">
+
+  <div class="filter-row">
+    <!-- Category filters -->
+    <button class="filter-btn active" data-filter="all">All Schools</button>
+    <button class="filter-btn" data-filter="hbcu">HBCUs</button>
+    <button class="filter-btn" data-filter="hsi">HSIs</button>
+    <button class="filter-btn" data-filter="cc">Community Colleges</button>
+    <button class="filter-btn" data-filter="public">Public</button>
+    <button class="filter-btn" data-filter="private">Private</button>
+
+    <div class="filter-divider" aria-hidden="true"></div>
+
+    <!-- Value / mission filters -->
+    <button class="filter-btn value-filter" data-filter="high-pell" title="Schools where over 50% of students receive Pell Grants">Pell &gt;50%</button>
+    <button class="filter-btn value-filter" data-filter="low-price" title="Schools with avg net price under $15,000/yr">Net Price &lt;$15K</button>
+  </div>
+</div>
+
+<p class="results-meta" id="results-meta"></p>
+
+<div id="categories-container">
+  <p style="text-align:center;padding:3rem;color:var(--muted);">Loading schools…</p>
+</div>
+
+<footer>
+  <a href="../index.html" class="logo">Scholar<span style="color:var(--gold);">Path</span></a>
+  <span>© 2025 ScholarPath. A 501(c)(3) nonprofit organization.</span>
+</footer>
+
+<script>
+(function () {
+  let allColleges  = [];
+  let activeFilter = 'all';
+
+  // ── Category definitions ───────────────────────────────────────────────────
+  const CATEGORIES = [
+    {
+      key: 'hbcu',
+      eyebrow: 'Category 01',
+      title: 'HBCUs',
+      desc: 'Historically Black Colleges & Universities — rich legacy, powerful alumni networks, and communities built for Black students to thrive.',
+      photoClass: 'hbcu',
+      catName: 'HBCUs',
+      match: c => c.is_hbcu,
+    },
+    {
+      key: 'hsi',
+      eyebrow: 'Category 02',
+      title: 'Hispanic Serving Institutions',
+      desc: 'Hispanic Serving Institutions enroll at least 25% Hispanic students and are among the most affordable, accessible colleges in the country.',
+      photoClass: 'hsi',
+      catName: 'HSIs',
+      match: c => c.is_hsi,
+    },
+    {
+      key: 'cc',
+      eyebrow: 'Category 03',
+      title: 'Community Colleges',
+      desc: 'The most affordable path to a degree — many with transfer agreements to 4-year universities. A smart power move for working students.',
+      photoClass: 'cc',
+      catName: 'Community Colleges',
+      match: c => c.is_cc,
+    },
+    {
+      key: 'public',
+      eyebrow: 'Category 04',
+      title: 'Public Universities',
+      desc: 'Large public universities offering strong academics at in-state prices, with diverse programs and research opportunities.',
+      photoClass: 'public',
+      catName: 'Public Universities',
+      match: c => c.type === 'Public' && !c.is_hbcu && !c.is_hsi && !c.is_cc,
+    },
+    {
+      key: 'private',
+      eyebrow: 'Category 05',
+      title: 'Private Colleges',
+      desc: 'Private nonprofit colleges offering smaller class sizes, strong alumni networks, and generous financial aid packages.',
+      photoClass: 'private',
+      catName: 'Private Colleges',
+      match: c => c.type === 'Private' && !c.is_hbcu && !c.is_hsi && !c.is_cc,
+    },
+  ];
+
+  // ── Stat formatters ────────────────────────────────────────────────────────
+  function fmtPrice(p) {
+    if (p == null) return '—';
+    return '$' + (p / 1000).toFixed(1) + 'K';
+  }
+
+  function fmtPct(r) {
+    if (r == null) return '—';
+    return Math.round(r * 100) + '%';
+  }
+
+  // ── Filtering ──────────────────────────────────────────────────────────────
+  function matchesFilter(c, filter, search) {
+    if (search && !c.full_name.toLowerCase().includes(search)) return false;
+    switch (filter) {
+      case 'all':        return true;
+      case 'hbcu':       return c.is_hbcu;
+      case 'hsi':        return c.is_hsi;
+      case 'cc':         return c.is_cc;
+      case 'public':     return c.type === 'Public';
+      case 'private':    return c.type === 'Private';
+      case 'high-pell':  return c.pell_grant_rate != null && c.pell_grant_rate >= 0.5;
+      case 'low-price':  return c.price != null && c.price < 15000;
+      default:           return true;
+    }
+  }
+
+  // ── Row renderer ───────────────────────────────────────────────────────────
+  function renderRow(c, idx) {
+    const hidden = idx >= 4 ? ' hidden' : '';
+    return `
+      <div class="dir-school-row${hidden}" onclick="window.location='schools/template.html?school=${c.id}'">
+        <div class="dir-school-name">${c.full_name}</div>
+        <div class="dir-school-stats">
+          <div class="dir-school-stat">
+            <div class="dir-school-stat-n">${fmtPct(c.admission_rate)}</div>
+            <div class="dir-school-stat-l">Admit</div>
+          </div>
+          <div class="dir-school-stat">
+            <div class="dir-school-stat-n">${fmtPct(c.pell_grant_rate)}</div>
+            <div class="dir-school-stat-l">Pell</div>
+          </div>
+          <div class="dir-school-stat">
+            <div class="dir-school-stat-n">${fmtPrice(c.price)}</div>
+            <div class="dir-school-stat-l">Avg net</div>
+          </div>
+        </div>
+        <div class="dir-school-arrow">View profile →</div>
+      </div>`;
+  }
+
+  // ── Category section renderer ──────────────────────────────────────────────
+  function renderCategorySection(cat, schools) {
+    if (schools.length === 0) return '';
+
+    const rows = schools.map((c, i) => renderRow(c, i)).join('');
+    const showMore = schools.length > 4 ? `
+      <button class="dir-show-more"
+        onclick="toggleCategory(this, '${cat.key}')"
+        data-cat-name="${cat.catName}"
+        data-total="${schools.length}">
+        Show all ${schools.length} ${cat.catName} →
+      </button>` : '';
+
+    return `
+      <div class="dir-cat" data-cat-key="${cat.key}">
+        <div class="dir-cat-header">
+          <div class="dir-cat-left">
+            <div class="dir-cat-eyebrow">${cat.eyebrow}</div>
+            <div class="dir-cat-title">${cat.title}</div>
+            <div class="dir-cat-desc">${cat.desc}</div>
+            <div class="dir-cat-count">${schools.length} school${schools.length !== 1 ? 's' : ''}</div>
+          </div>
+          <div class="dir-cat-photo ${cat.photoClass}"></div>
+        </div>
+        <div class="dir-school-list" id="cat-list-${cat.key}">
+          ${rows}
+        </div>
+        ${showMore}
+      </div>`;
+  }
+
+  // ── Main render ────────────────────────────────────────────────────────────
+  function renderCategories(filtered) {
+    const container = document.getElementById('categories-container');
+    const meta = document.getElementById('results-meta');
+
+    meta.textContent = filtered.length === allColleges.length
+      ? `Showing all ${filtered.length} schools`
+      : `${filtered.length} school${filtered.length !== 1 ? 's' : ''} match your filters`;
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <h3>No schools match your filters</h3>
+          <p>Try broadening your search or clearing a filter.</p>
+        </div>`;
+      return;
+    }
+
+    const filteredIds = new Set(filtered.map(c => c.id));
+
+    const html = CATEGORIES.map(cat => {
+      const schools = allColleges.filter(c => cat.match(c) && filteredIds.has(c.id));
+      return renderCategorySection(cat, schools);
+    }).join('');
+
+    container.innerHTML = html || `
+      <div class="empty-state">
+        <h3>No schools match your filters</h3>
+        <p>Try broadening your search or clearing a filter.</p>
+      </div>`;
+  }
+
+  function update() {
+    const search = document.getElementById('school-search').value.toLowerCase().trim();
+    renderCategories(allColleges.filter(c => matchesFilter(c, activeFilter, search)));
+  }
+
+  // ── Filter buttons ─────────────────────────────────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      update();
+    });
+  });
+
+  document.getElementById('school-search').addEventListener('input', update);
+
+  // ── Load data ──────────────────────────────────────────────────────────────
+  fetch('../js/colleges.json')
+    .then(r => r.json())
+    .then(data => {
+      allColleges = data;
+      update();
+    })
+    .catch(e => {
+      console.error('Error loading directory:', e);
+      document.getElementById('categories-container').innerHTML =
+        '<p style="text-align:center;padding:3rem;color:var(--muted);">Could not load schools. Please try again.</p>';
+    });
+})();
+
+function toggleCategory(btn, catId) {
+  const list = document.getElementById('cat-list-' + catId);
+  const hidden = list.querySelectorAll('.dir-school-row.hidden');
+  const catName = btn.getAttribute('data-cat-name');
+  const total = btn.getAttribute('data-total');
+  if (hidden.length > 0) {
+    hidden.forEach(r => r.classList.remove('hidden'));
+    btn.textContent = 'Show fewer ' + catName + ' ↑';
+  } else {
+    const rows = list.querySelectorAll('.dir-school-row');
+    rows.forEach((r, i) => { if (i >= 4) r.classList.add('hidden'); });
+    btn.textContent = 'Show all ' + total + ' ' + catName + ' →';
+  }
+}
+</script>
+
+</body>
+</html>

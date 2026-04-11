@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply for a Scholarship — ScholarPath</title>
+  <meta name="description" content="Apply for a ScholarPath scholarship. We fund first-generation students, STEM scholars, and creative arts students." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVF89Q5PG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BWVF89Q5PG');
+  </script>
+
+  <style>
+    .apply-hero { background: var(--navy) url('../assets/images/school-voorhees.jpg') center/cover no-repeat; background-blend-mode: overlay; padding: 4rem 3rem 3rem; position: relative; }
+    .apply-hero::before { content: ''; position: absolute; inset: 0; background: rgba(26,39,68,0.48); }
+    .apply-hero > * { position: relative; z-index: 1; }
+    .apply-hero h1 { font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.2; }
+    .apply-hero h1 em { color: var(--gold); font-style: normal; }
+    .apply-hero p.sub { font-size: 0.95rem; color: rgba(255,255,255,0.65); max-width: 580px; line-height: 1.7; margin-bottom: 2rem; }
+
+    .incentive-banner { background: var(--gold); padding: 0.85rem 3rem; display: flex; align-items: center; gap: 1rem; }
+    .incentive-banner p { font-size: 0.88rem; font-weight: 500; color: #fff; }
+    .incentive-banner strong { font-weight: 700; }
+
+    .apply-body { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; padding: 2.5rem 3rem; max-width: 1200px; margin: 0 auto; align-items: start; }
+
+    .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
+    .form-section-title { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.5rem; }
+    .form-section-heading { font-family: 'Fraunces', serif; font-size: 1.25rem; color: var(--navy); margin-bottom: 1.5rem; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+    .fund-selector { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+    .fund-option { display: flex; align-items: flex-start; gap: 12px; padding: 1rem; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; transition: border-color 0.15s; }
+    .fund-option:hover { border-color: var(--gold); }
+    .fund-option.selected { border: 2px solid var(--gold); background: #fffbf5; }
+    .fund-option input[type=radio] { margin-top: 3px; accent-color: var(--gold); flex-shrink: 0; }
+    .fund-option-info h4 { font-size: 0.92rem; font-weight: 500; color: var(--navy); margin-bottom: 0.2rem; }
+    .fund-option-info p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .fund-amount { font-size: 0.78rem; font-weight: 500; color: var(--gold); margin-top: 4px; }
+
+    .gpa-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .checkbox-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text); cursor: pointer; }
+    .checkbox-item input { accent-color: var(--gold); }
+
+    .essay-counter { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+    .essay-counter span.warn { color: #E24B4A; }
+
+    .consent-box { background: #f8f8f6; border-radius: 10px; padding: 1rem; margin-bottom: 1.25rem; }
+    .consent-box p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.75rem; }
+    .consent-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 0.78rem; color: var(--text); line-height: 1.5; }
+    .consent-item input { margin-top: 3px; accent-color: var(--gold); flex-shrink: 0; }
+
+    .submit-btn { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 12px; padding: 1rem; font-size: 1rem; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
+    .submit-btn:hover { background: var(--navy-mid); }
+
+    .success-card { display: none; background: var(--success-bg); border: 1px solid var(--success); border-radius: 16px; padding: 2.5rem; text-align: center; }
+    .success-card.visible { display: block; }
+    .success-check { width: 60px; height: 60px; border-radius: 50%; background: var(--success); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+    .success-card h3 { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 0.75rem; }
+    .success-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.5rem; }
+
+    .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+    .side-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; }
+    .side-card h4 { font-size: 0.88rem; font-weight: 500; color: var(--navy); margin-bottom: 0.85rem; }
+
+    .eligibility-list { display: flex; flex-direction: column; gap: 8px; }
+    .elig-item { display: flex; align-items: flex-start; gap: 8px; font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .elig-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
+
+    .timeline-mini { display: flex; flex-direction: column; gap: 12px; }
+    .tl-item { display: flex; gap: 12px; }
+    .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 4px; }
+    .tl-item h5 { font-size: 0.82rem; font-weight: 500; color: var(--navy); margin-bottom: 2px; }
+    .tl-item p { font-size: 0.75rem; color: var(--muted); }
+
+    .incentive-card { background: var(--navy); border-radius: 14px; padding: 1.25rem; color: #fff; }
+    .incentive-card h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .incentive-card p { font-size: 0.78rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 1rem; }
+    .incentive-card a { display: block; background: var(--gold); color: #fff; text-align: center; padding: 0.6rem; border-radius: 8px; text-decoration: none; font-size: 0.82rem; font-weight: 500; }
+
+    .funds-status { display: flex; flex-direction: column; gap: 10px; }
+    .fund-status-item h5 { font-size: 0.82rem; font-weight: 500; color: var(--navy); margin-bottom: 4px; display: flex; justify-content: space-between; }
+    .fund-status-item h5 span { color: var(--gold); font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+
+<nav class="sp-nav sp-nav-dark">
+  <a href="../index.html" class="sp-logo">Scholar<span>Path</span></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a href="directory.html">School Directory</a></li>
+    <li><a href="share-story.html">Share Story</a></li>
+    <li><a href="apply.html">Apply</a></li>
+  </ul>
+  <a href="donate.html" class="nav-cta">Donate now</a>
+</nav>
+
+<div class="apply-hero">
+  <p class="eyebrow">Scholarship application</p>
+  <h1>Apply for a <em>ScholarPath</em> scholarship</h1>
+  <p class="sub">We award scholarships to students who demonstrate financial need, academic commitment, and a genuine desire to find the right path — not just any path. Applications are reviewed on a rolling basis.</p>
+</div>
+
+<div class="incentive-banner">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+  <p><strong>Bonus:</strong> Submit a college testimonial after applying and earn one entry into our quarterly $500 scholarship drawing. <a href="testimonials.html" style="color:#fff;text-decoration:underline;">Share your story →</a></p>
+</div>
+
+<div class="apply-body">
+  <div>
+    <form class="form-card" id="application-form" action="https://formspree.io/f/mbdpbljz" method="POST">
+
+      <p class="form-section-title">Step 1 of 5</p>
+      <h2 class="form-section-heading">Which scholarship fund are you applying for?</h2>
+      <div class="fund-selector">
+        <label class="fund-option selected" onclick="selectFund(this)">
+          <input type="radio" name="fund" value="first-gen" checked>
+          <div class="fund-option-info">
+            <h4>First-Generation Student Fund</h4>
+            <p>For students who are the first in their family to attend college. Covers tuition gaps, books, and living expenses.</p>
+            <div class="fund-amount">Awards up to $2,500 · Rolling deadline</div>
+          </div>
+        </label>
+        <label class="fund-option" onclick="selectFund(this)">
+          <input type="radio" name="fund" value="stem">
+          <div class="fund-option-info">
+            <h4>STEM Scholars Fund</h4>
+            <p>For underrepresented students pursuing science, technology, engineering, or mathematics degrees.</p>
+            <div class="fund-amount">Awards up to $2,000 · Rolling deadline</div>
+          </div>
+        </label>
+        <label class="fund-option" onclick="selectFund(this)">
+          <input type="radio" name="fund" value="arts">
+          <div class="fund-option-info">
+            <h4>Arts & Humanities Fund</h4>
+            <p>For students pursuing creative fields — film, music, design, literature, or the humanities.</p>
+            <div class="fund-amount">Awards up to $1,500 · Rolling deadline</div>
+          </div>
+        </label>
+      </div>
+
+      <hr class="divider">
+
+      <p class="form-section-title">Step 2 of 5</p>
+      <h2 class="form-section-heading">Personal information</h2>
+      <div class="field-row">
+        <div class="field"><label>Legal first name</label><input type="text" name="first_name" placeholder="Jordan" required></div>
+        <div class="field"><label>Legal last name</label><input type="text" name="last_name" placeholder="Martinez" required></div>
+      </div>
+      <div class="field"><label>Email address</label><input type="email" name="email" placeholder="you@email.com" required></div>
+      <div class="field"><label>Phone number</label><input type="tel" name="phone" placeholder="(555) 000-0000"></div>
+      <div class="field-row">
+        <div class="field"><label>Date of birth</label><input type="date" name="dob" required></div>
+        <div class="field">
+          <label>Citizenship status</label>
+          <select name="citizenship" required>
+            <option value="">Select...</option>
+            <option>U.S. Citizen</option>
+            <option>Permanent Resident</option>
+            <option>DACA Recipient</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>Mailing address</label><input type="text" name="address" placeholder="123 Main St, City, State, ZIP"></div>
+
+      <hr class="divider">
+
+      <p class="form-section-title">Step 3 of 5</p>
+      <h2 class="form-section-heading">Academic information</h2>
+      <div class="field">
+        <label>Current or intended school</label>
+        <input type="text" name="school_name" placeholder="e.g. Howard University, Sacramento City College" required>
+      </div>
+      <div class="field">
+        <label>School type</label>
+        <select name="school_type" required>
+          <option value="">Select...</option>
+          <option>4-year university</option>
+          <option>HBCU</option>
+          <option>Community college</option>
+          <option>Liberal arts college</option>
+          <option>Online degree program</option>
+          <option>Trade / Vocational school</option>
+          <option>Graduate program</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Enrollment status</label>
+          <select name="enrollment_status" required>
+            <option value="">Select...</option>
+            <option>Incoming freshman</option>
+            <option>Currently enrolled</option>
+            <option>Transferring</option>
+            <option>Returning adult student</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Expected graduation year</label>
+          <select name="grad_year" required>
+            <option value="">Select...</option>
+            <option>2025</option>
+            <option>2026</option>
+            <option>2027</option>
+            <option>2028</option>
+            <option>2029+</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>Intended major or field of study</label><input type="text" name="major" placeholder="e.g. Computer Science, Nursing, Film Production"></div>
+      <div class="gpa-row">
+        <div class="field">
+          <label>Current GPA</label>
+          <select name="gpa">
+            <option value="">Select...</option>
+            <option>4.0</option>
+            <option>3.5 – 3.9</option>
+            <option>3.0 – 3.4</option>
+            <option>2.5 – 2.9</option>
+            <option>2.0 – 2.4</option>
+            <option>Below 2.0</option>
+            <option>N/A (incoming)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>FAFSA completed?</label>
+          <select name="fafsa_status" required>
+            <option value="">Select...</option>
+            <option>Yes</option>
+            <option>No — planning to</option>
+            <option>Not eligible</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Student Aid Index (SAI)</label>
+          <input type="text" name="sai" placeholder="e.g. 0 – 5000">
+        </div>
+      </div>
+
+      <p style="font-size:0.78rem;color:var(--muted);margin-bottom:1rem;">Which of the following apply to you? (select all that apply)</p>
+      <div class="checkbox-group" style="margin-bottom:1.5rem;">
+        <label class="checkbox-item"><input type="checkbox" name="is_first_gen"> I am a first-generation college student</label>
+        <label class="checkbox-item"><input type="checkbox" name="is_student_of_color"> I am a student of color</label>
+        <label class="checkbox-item"><input type="checkbox" name="is_single_parent"> I am a single parent or caregiver</label>
+        <label class="checkbox-item"><input type="checkbox" name="is_employed"> I am currently employed (part-time or full-time)</label>
+        <label class="checkbox-item"><input type="checkbox" name="is_housing_insecure"> I have experienced housing or food insecurity</label>
+        <label class="checkbox-item"><input type="checkbox" name="is_veteran"> I am a military veteran or dependent</label>
+      </div>
+
+      <hr class="divider">
+
+      <p class="form-section-title">Step 4 of 5</p>
+      <h2 class="form-section-heading">Financial need</h2>
+      <div class="field">
+        <label>Estimated annual household income</label>
+        <select name="household_income" required>
+          <option value="">Select...</option>
+          <option>Under $20,000</option>
+          <option>$20,000 – $40,000</option>
+          <option>$40,000 – $60,000</option>
+          <option>$60,000 – $80,000</option>
+          <option>$80,000 – $100,000</option>
+          <option>Over $100,000</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Estimated unmet financial need (after grants/loans)</label>
+        <select name="unmet_need" required>
+          <option value="">Select...</option>
+          <option>Under $1,000</option>
+          <option>$1,000 – $3,000</option>
+          <option>$3,000 – $5,000</option>
+          <option>$5,000 – $10,000</option>
+          <option>Over $10,000</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>How would this scholarship be used? (be specific)</label>
+        <textarea name="funds_usage" placeholder="e.g. I would use this scholarship to cover my spring semester tuition gap of $1,800 and purchase my required textbooks for my nursing program..." required oninput="updateCount('need-essay', 'need-count', 300)" id="need-essay"></textarea>
+        <div class="essay-counter"><span></span><span id="need-count">0 / 300 words</span></div>
+      </div>
+
+      <hr class="divider">
+
+      <p class="form-section-title">Step 5 of 5</p>
+      <h2 class="form-section-heading">Your story</h2>
+      <p style="font-size:0.85rem;color:var(--muted);line-height:1.7;margin-bottom:1.25rem;">This is the most important part of your application. Tell us: What led you to your school and field of study? What obstacles have you faced? What do you want to accomplish — and why does it matter? There are no wrong answers. Be honest and be yourself.</p>
+      <div class="field">
+        <label>Personal essay (250–500 words)</label>
+        <textarea name="personal_essay" id="main-essay" style="min-height:180px;" placeholder="Tell us your story..." required oninput="updateCount('main-essay', 'essay-count', 500)"></textarea>
+        <div class="essay-counter"><span style="font-size:0.72rem;color:var(--muted);">Minimum 250 words</span><span id="essay-count">0 / 500 words</span></div>
+      </div>
+      <div class="field">
+        <label>One sentence that describes your college goal</label>
+        <input type="text" name="goal_sentence" placeholder="e.g. I want to become a nurse practitioner and serve my community in Salinas, CA.">
+      </div>
+
+      <hr class="divider">
+
+      <div class="consent-box">
+        <p>Please read and agree to the following before submitting your application.</p>
+        <label class="consent-item"><input type="checkbox" id="consent1" name="consent_accurate" required> I certify that all information provided in this application is accurate and complete to the best of my knowledge.</label>
+        <label class="consent-item"><input type="checkbox" id="consent2" name="consent_funds" required> I understand that ScholarPath scholarship funds are disbursed directly to my educational institution and must be used for tuition, books, or other approved educational expenses.</label>
+        <label class="consent-item"><input type="checkbox" id="consent3" name="consent_contact" required> I give ScholarPath permission to contact me via email regarding my application status and future scholarship opportunities.</label>
+        <label class="consent-item"><input type="checkbox" id="consent4" name="consent_public"> I am open to having my first name and school shared on ScholarPath's website as a scholarship recipient (optional).</label>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit my application</button>
+      <p style="font-size:0.75rem;color:var(--muted);text-align:center;margin-top:0.75rem;">Applications are reviewed on a rolling basis. You will receive a confirmation email within 48 hours.</p>
+    </form>
+
+    <div class="success-card" id="success-card">
+      <div class="success-check">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Application received!</h3>
+      <p>Thank you for applying to ScholarPath. We've received your application and will review it carefully.</p>
+      <p>You'll receive a confirmation email within 48 hours. If selected as a finalist, we'll reach out within 4–6 weeks.</p>
+      <p style="margin-top:1rem;padding:1rem;background:#fff;border-radius:10px;border:1px solid var(--border);">
+        <strong style="color:var(--navy);display:block;margin-bottom:0.4rem;">Don't forget your bonus entry!</strong>
+        <span style="font-size:0.82rem;">Submit a college testimonial to earn one entry into our quarterly $500 scholarship drawing.</span>
+        <a href="testimonials.html" style="display:inline-block;margin-top:0.75rem;background:var(--gold);color:#fff;padding:0.5rem 1.25rem;border-radius:50px;text-decoration:none;font-size:0.82rem;font-weight:500;">Share your story →</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="side-card">
+      <h4>Eligibility requirements</h4>
+      <div class="eligibility-list">
+        <div class="elig-item"><div class="elig-dot"></div>Enrolled or accepted at an accredited U.S. college, university, trade, or vocational school</div>
+        <div class="elig-item"><div class="elig-dot"></div>U.S. citizen, permanent resident, or DACA recipient</div>
+        <div class="elig-item"><div class="elig-dot"></div>Demonstrated financial need</div>
+        <div class="elig-item"><div class="elig-dot"></div>Funds used exclusively for educational expenses</div>
+        <div class="elig-item"><div class="elig-dot"></div>No minimum GPA required for need-based awards</div>
+        <div class="elig-item"><div class="elig-dot"></div>Not related to ScholarPath board members or staff</div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h4>Application timeline</h4>
+      <div class="timeline-mini">
+        <div class="tl-item"><div class="tl-dot"></div><div><h5>Submit application</h5><p>Rolling — no fixed deadline</p></div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div><h5>Confirmation email</h5><p>Within 48 hours of submission</p></div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div><h5>Application review</h5><p>4–6 weeks after submission</p></div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div><h5>Award notification</h5><p>Via email to finalists</p></div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div><h5>Funds disbursed</h5><p>Directly to your school</p></div></div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h4>Active funds</h4>
+      <div class="funds-status">
+        <div class="fund-status-item">
+          <h5>First-Gen Fund <span>$2,500 max</span></h5>
+          <div class="progress-wrap"><div class="progress-bar" style="width:68%"></div></div>
+        </div>
+        <div class="fund-status-item" style="margin-top:8px;">
+          <h5>STEM Fund <span>$2,000 max</span></h5>
+          <div class="progress-wrap"><div class="progress-bar" style="width:42%"></div></div>
+        </div>
+        <div class="fund-status-item" style="margin-top:8px;">
+          <h5>Arts & Humanities <span>$1,500 max</span></h5>
+          <div class="progress-wrap"><div class="progress-bar" style="width:29%"></div></div>
+        </div>
+        <a href="donate.html" style="display:block;text-align:center;margin-top:1rem;font-size:0.78rem;color:var(--gold);font-weight:500;text-decoration:none;">Help grow these funds →</a>
+      </div>
+    </div>
+
+    <div class="aff-tools-card">
+      <h4 class="aff-tools-title">Tools to help you succeed</h4>
+      <p class="aff-tools-sub">Resources we recommend for every student.</p>
+      <div class="aff-tools-list">
+
+        <div class="aff-tool-item">
+          <div class="aff-tool-icon" style="background:#EBF3FC; color:#1A5C9E;">G</div>
+          <div class="aff-tool-info">
+            <div class="aff-tool-name">Grammarly Premium</div>
+            <div class="aff-tool-desc">Polish every essay and application</div>
+          </div>
+          <a href="#" class="aff-tool-link" data-affiliate="grammarly" target="_blank" rel="noopener">Try it →</a>
+        </div>
+
+        <div class="aff-tool-item">
+          <div class="aff-tool-icon" style="background:#EAF3DE; color:#27500A;">C</div>
+          <div class="aff-tool-info">
+            <div class="aff-tool-name">Chegg Study</div>
+            <div class="aff-tool-desc">24/7 homework help and tutoring</div>
+          </div>
+          <a href="#" class="aff-tool-link" data-affiliate="chegg" target="_blank" rel="noopener">Try it →</a>
+        </div>
+
+        <div class="aff-tool-item">
+          <div class="aff-tool-icon" style="background:#FEF3E8; color:#924A10;">K</div>
+          <div class="aff-tool-info">
+            <div class="aff-tool-name">Kaplan Test Prep</div>
+            <div class="aff-tool-desc">SAT, ACT, and GRE prep courses</div>
+          </div>
+          <a href="#" class="aff-tool-link" data-affiliate="kaplan" target="_blank" rel="noopener">Try it →</a>
+        </div>
+
+        <div class="aff-tool-item">
+          <div class="aff-tool-icon" style="background:#EEEDFE; color:#4A3DB5;">Co</div>
+          <div class="aff-tool-info">
+            <div class="aff-tool-name">Coursera</div>
+            <div class="aff-tool-desc">Free and paid certifications</div>
+          </div>
+          <a href="#" class="aff-tool-link" data-affiliate="coursera" target="_blank" rel="noopener">Try it →</a>
+        </div>
+
+      </div>
+      <p class="aff-tools-disclosure">ScholarPath may earn a small commission from these links at no cost to you. All tools are independently selected.</p>
+    </div>
+
+    <div class="incentive-card">
+      <h4>Earn a bonus entry</h4>
+      <p>After submitting your application, share your college story on our testimonials page. Every published story earns one entry into our quarterly $500 scholarship drawing.</p>
+      <a href="testimonials.html">Share your story →</a>
+    </div>
+
+    <div class="side-card">
+      <h4>Questions?</h4>
+      <p style="font-size:0.8rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">If you have questions about eligibility, the application process, or how funds are disbursed, we're here to help.</p>
+      <a href="mailto:hello@scholarpath.org" style="font-size:0.82rem;color:var(--gold);font-weight:500;text-decoration:none;">hello@scholarpath.org</a>
+    </div>
+  </div>
+</div>
+
+<div style="position:relative;background:var(--navy);padding:4rem 3rem;overflow:hidden;text-align:center;">
+  <div style="position:absolute;inset:0;background:url('../assets/images/guide-la.jpg') center/cover no-repeat;opacity:0.52;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,39,68,0.68) 0%,rgba(26,39,68,0.32) 100%);"></div>
+  <div style="position:relative;z-index:1;">
+    <p class="eyebrow">Not ready to apply?</p>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:0.75rem;">Explore schools first</h2>
+    <p style="color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto 1.75rem;line-height:1.7;">Browse our curated school directory with real student reviews and financial data to find the right fit before you commit.</p>
+    <a href="directory.html" class="btn-primary">Browse the School Directory →</a>
+  </div>
+</div>
+
+<footer>
+  <a href="../index.html" class="logo">Scholar<span style="color:var(--gold);">Path</span></a>
+  <span>© 2025 ScholarPath. A 501(c)(3) nonprofit organization.</span>
+  <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="mailto:elliotgeise@thescholarpath.org">Contact</a></span>
+</footer>
+
+<script src="../js/shared.js"></script>
+<script>
+  function selectFund(el) {
+    document.querySelectorAll('.fund-option').forEach(f => f.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function updateCount(textareaId, countId, max) {
+    const el = document.getElementById(textareaId);
+    const counter = document.getElementById(countId);
+    if (!el || !counter) return;
+    const words = el.value.trim().split(/\s+/).filter(w => w).length;
+    counter.textContent = words + ' / ' + max + ' words';
+    counter.className = words > max ? 'warn' : '';
+  }
+
+  // New Formspree Submission Logic
+  const form = document.getElementById('application-form');
+  const successCard = document.getElementById('success-card');
+
+  if (form) {
+    form.addEventListener("submit", async function(event) {
+      event.preventDefault(); // Stop the page from reloading
+
+      // Word Count Validation
+      const essayText = document.getElementById('main-essay').value.trim();
+      const wordCount = essayText.split(/\s+/).filter(w => w).length;
+
+      if (wordCount < 250) {
+        alert(`Your personal essay is currently ${wordCount} words. Please reach the minimum requirement of 250 words before submitting.`);
+        document.getElementById('main-essay').focus();
+        return;
+      }
+
+      const data = new FormData(event.target);
+
+      // Send the data to Formspree
+      try {
+        const response = await fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        
+        if (response.ok) {
+          // Hide form and show success card
+          form.style.display = 'none';
+          successCard.classList.add('visible');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          alert("Oops! There was a problem submitting your application.");
+        }
+      } catch (error) {
+        alert("Error connecting to the server. Please try again.");
+      }
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[School Name] Profile — ScholarPath</title>
+  <meta name="description" content="Real student perspectives and analytical data for [School Name]. See the ROI and 'Real Talk' before you apply." />
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <style>
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 3rem;
+      padding: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .main-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .testimonial-section h3 {
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .testimonial-section p {
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .sidebar-sticky {
+      position: sticky;
+      top: 100px;
+    }
+    @media (max-width: 900px) {
+      .profile-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html" class="logo">Scholar<span>Path</span></a>
+  <ul>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../testimonials.html">School Directory</a></li>
+    <li><a href="../share-story.html">Share Story</a></li>
+    <li><a href="../apply.html">Apply</a></li>
+  </ul>
+  <a href="../donate.html" class="nav-cta">Donate now</a>
+</nav>
+
+<header class="page-hero">
+  <p class="eyebrow">School Profile</p>
+  <h1 class="section-title">[School Name]</h1>
+  <p class="sub">[City, State] · [Short Tagline]</p>
+</header>
+
+<div class="profile-layout">
+  <main class="main-content">
+    <h2>Student Real Talk</h2>
+    
+    <section class="testimonial-section">
+      <h3>1. The Brochure vs. Reality</h3>
+      <p>
+        [Student Story Content Here]
+      </p>
+    </section>
+
+    <section class="testimonial-section">
+      <h3>2. The "Wish I Knew"</h3>
+      <p>
+        [Student Story Content Here]
+      </p>
+    </section>
+
+    <section class="testimonial-section">
+      <h3>3. Is it worth the cost? (ROI)</h3>
+      <p>
+        [Student Story Content Here]
+      </p>
+    </section>
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-sticky">
+      <div id="scorecard-container">
+        <!-- Populated by shared.js -->
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <h4 style="margin-bottom: 0.5rem; color: var(--navy);">Why this profile?</h4>
+        <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">
+          Our profiles merge official Department of Education data with verified student stories to give you the clearest possible picture of your future.
+        </p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <a href="../../index.html" class="logo">Scholar<span style="color:var(--gold);">Path</span></a>
+  <span>© 2025 ScholarPath. A 501(c)(3) nonprofit organization.</span>
+</footer>
+
+<script src="../../js/shared.js"></script>
+<script>
+  // Initialize the scorecard with the ID from colleges.json
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof initScorecard === 'function') {
+      initScorecard(); 
+    }
+  });
+</script>
+</body>
+</html>

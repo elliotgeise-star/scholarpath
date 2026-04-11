@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:educationdata.urban.org)",
+      "Bash(python3 scraper.py)",
+      "Bash(curl -s \"https://api.data.gov/ed/collegescorecard/v1/schools?api_key=1VYFV5P6fgyPa24kdzuluVzK3ulMLhsQbGzApzVi&fields=id,school.name,school.historically_black,school.minority_serving.hispanic_serving,school.degrees_awarded.predominant,latest.student.size,latest.admissions.admission_rate.overall,latest.cost.avg_net_price.public,latest.cost.avg_net_price.private,latest.aid.pell_grant_rate&id=131520,220862,139658\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s \"https://api.data.gov/ed/collegescorecard/v1/schools?api_key=1VYFV5P6fgyPa24kdzuluVzK3ulMLhsQbGzApzVi&fields=id,school.name&school.name=Mt+San+Antonio&per_page=3\")",
+      "Bash(curl -s \"https://api.data.gov/ed/collegescorecard/v1/schools?api_key=1VYFV5P6fgyPa24kdzuluVzK3ulMLhsQbGzApzVi&fields=id,school.name&school.name=Georgia+State+University&per_page=3\")",
+      "Bash(curl -s \"https://api.data.gov/ed/collegescorecard/v1/schools?api_key=1VYFV5P6fgyPa24kdzuluVzK3ulMLhsQbGzApzVi&fields=id,school.name&school.name=Jackson+State&per_page=3\")",
+      "Bash(mkdir -p \"/Users/elliotgeise/Desktop/ScholarPath/assets/images\")",
+      "Bash(cp \"/Users/elliotgeise/Desktop/ScholarPath/assets:images/\"* \"/Users/elliotgeise/Desktop/ScholarPath/assets/images/\")",
+      "Bash(mv \"pexels-yankrukov-8199167.jpg\"                    \"hero-campus.jpg\")",
+      "Bash(mv \"52691703838_8496d656c3_c.jpg\"                    \"guide-hbcu.jpg\")",
+      "Bash(mv \"53499384520_933b58865c_c.jpg\"                    \"guide-cc.jpg\")",
+      "Bash(mv \"pexels-icsa-833425-1709003.jpg\"                  \"guide-hsi.jpg\")",
+      "Bash(mv \"pexels-maggie-murray-3781784-5604180.jpg\"        \"guide-la.jpg\")",
+      "Bash(python3 -)",
+      "Bash(grep -n \"</div>$\\\\|<footer\" /Users/elliotgeise/Desktop/ScholarPath/pages/apply.html)",
+      "Bash(git -C /Users/elliotgeise/.gemini/history/scholarpath remote -v)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
