@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 /tmp/fix_schools.py > /tmp/colleges_final.json 2>/tmp/fix_log.txt *)"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}

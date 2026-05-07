@@ -20,7 +20,24 @@
       "Bash(grep -n \"</div>$\\\\|<footer\" /Users/elliotgeise/Desktop/ScholarPath/pages/apply.html)",
       "Bash(git -C /Users/elliotgeise/.gemini/history/scholarpath remote -v)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Read(//Users/elliotgeise/**)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" -L https://elliotgeise-star.github.io/scholarpath/)",
+      "Bash(git fetch *)",
+      "Bash(git pull *)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 /tmp/fetch_schools.py)",
+      "Bash(echo \"Exit code: $?\")",
+      "Read(//tmp/**)",
+      "Bash(python3 /tmp/fetch_by_name2.py)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(cat /tmp/fetch_log2.txt)",
+      "Read(//private/tmp/**)"
     ]
   }
 }
