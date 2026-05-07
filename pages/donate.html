@@ -4,87 +4,241 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Donate — ScholarPath</title>
-  <meta name="description" content="Support ScholarPath scholarship funds for first-generation, STEM, and creative arts students." />
+  <meta name="description" content="Support ScholarPath scholarship funds for first-generation, STEM, and creative arts students at HBCUs, HSIs, and community colleges." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css" />
-  <style>
-    .coming-soon-wrap {
-      max-width: 620px;
-      margin: 5rem auto;
-      padding: 0 2rem;
-      text-align: center;
-    }
-    .coming-soon-badge {
-      display: inline-block;
-      background: #FFF8EC;
-      color: var(--gold);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      border: 1px solid rgba(197,156,90,0.3);
-      margin-bottom: 1.5rem;
-    }
-    .coming-soon-wrap h1 {
-      font-family: 'Fraunces', serif;
-      font-size: 2.25rem;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.25;
-      margin-bottom: 1rem;
-    }
-    .coming-soon-wrap p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
-    }
-    .funds-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      text-align: left;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    .fund-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.88rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .fund-row:last-child { border-bottom: none; }
-    .fund-row-name { font-weight: 500; color: var(--navy); }
-    .fund-row-amt { color: var(--muted); font-size: 0.82rem; }
-    .notify-link {
-      display: inline-block;
-      background: var(--navy);
-      color: #fff;
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-    .notify-link:hover { background: var(--navy-mid); }
-  </style>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BWVF89Q5PG"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-BWVF89Q5PG");
+    gtag('js', new Date());
+    gtag('config', 'G-BWVF89Q5PG');
   </script>
+
+  <style>
+    /* ── HERO ── */
+    .donate-hero {
+      background: var(--navy) url('../assets/images/guide-hbcu.jpg') center/cover no-repeat;
+      background-blend-mode: overlay;
+      padding: 5rem 3rem 4rem;
+      position: relative;
+    }
+    .donate-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26,39,68,0.52);
+    }
+    .donate-hero > * { position: relative; z-index: 1; }
+    .donate-hero-inner { max-width: 640px; }
+    .donate-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .donate-hero h1 em { color: var(--gold); font-style: normal; }
+    .donate-hero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 3rem;
+    }
+    .stats-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .stat-divider {
+      width: 1px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+
+    /* ── FUNDS SECTION ── */
+    .funds-section {
+      padding: 4.5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .funds-section .eyebrow { margin-bottom: 0.5rem; }
+    .funds-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .funds-section .section-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+    .funds-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .fund-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+    .fund-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .fund-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .fund-card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.1rem;
+    }
+    .fund-card-award {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      background: var(--navy);
+      padding: 4.5rem 3rem;
+    }
+    .how-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .how-section .eyebrow { color: var(--gold); margin-bottom: 0.5rem; }
+    .how-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2.5rem;
+    }
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .how-step {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+    .how-step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+    .how-step h4 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .how-step p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    /* ── ZEFFY EMBED ── */
+    .embed-section {
+      padding: 4.5rem 3rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .embed-section .eyebrow { margin-bottom: 0.5rem; }
+    .embed-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+    .embed-section .section-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .zeffy-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .tax-note {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .donate-hero { padding: 3.5rem 1.5rem 3rem; }
+      .donate-hero h1 { font-size: 2rem; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .funds-section { padding: 3rem 1.5rem; }
+      .funds-grid { grid-template-columns: 1fr; }
+      .how-section { padding: 3rem 1.5rem; }
+      .how-grid { grid-template-columns: 1fr; }
+      .embed-section { padding: 3rem 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -98,29 +252,113 @@
   </ul>
 </nav>
 
-<div class="coming-soon-wrap">
-  <div class="coming-soon-badge">Coming soon</div>
-  <h1>Online donations are on their way</h1>
-  <p>We're setting up secure online giving for ScholarPath's scholarship funds. In the meantime, if you'd like to support a student, reach out to us directly and we'll get you set up.</p>
+<!-- HERO -->
+<section class="donate-hero">
+  <div class="donate-hero-inner">
+    <p class="eyebrow">Scholarship funding</p>
+    <h1>Fund a <em>Student's</em> Future</h1>
+    <p>Every dollar you give goes directly to students at HBCUs, Hispanic-Serving Institutions, and community colleges who are navigating college without a roadmap. No overhead. No bureaucracy. Just students who need support to stay on the path.</p>
+  </div>
+</section>
 
-  <div class="funds-list">
-    <div class="fund-row">
-      <span class="fund-row-name">First-Generation Student Fund</span>
-      <span class="fund-row-amt">Awards up to $2,500</span>
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">206</div>
+      <div class="stat-label">Schools in our directory</div>
     </div>
-    <div class="fund-row">
-      <span class="fund-row-name">STEM Scholars Fund</span>
-      <span class="fund-row-amt">Awards up to $2,000</span>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Active scholarship funds</div>
     </div>
-    <div class="fund-row">
-      <span class="fund-row-name">Arts &amp; Humanities Fund</span>
-      <span class="fund-row-amt">Awards up to $1,500</span>
+    <div class="stat-item">
+      <div class="stat-num">$6K</div>
+      <div class="stat-label">Max total awards per student</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0%</div>
+      <div class="stat-label">Overhead — 100% goes to students</div>
     </div>
   </div>
-
-  <p>Want to be notified when online giving launches? Send us a note.</p>
-  <a href="mailto:hello@scholarpath.org" class="notify-link">Contact us →</a>
 </div>
+
+<!-- FUNDS -->
+<section class="funds-section">
+  <p class="eyebrow">Where your money goes</p>
+  <h2>Three funds, one mission</h2>
+  <p class="section-sub">Choose which fund your gift supports, or let it go where it's needed most. Every fund targets a specific group of students who are underserved and underestimated.</p>
+
+  <div class="funds-grid">
+    <div class="fund-card">
+      <div class="fund-card-icon" style="background:#FFF3E0;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9954A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>First-Generation Student Fund</h3>
+      <p>For students who are the first in their family to attend college. Covers tuition gaps, books, and the living expenses that can derail an otherwise capable student.</p>
+      <span class="fund-card-award tag-gold">Awards up to $2,500</span>
+    </div>
+
+    <div class="fund-card">
+      <div class="fund-card-icon" style="background:#E6F1FB;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0C447C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>STEM Scholars Fund</h3>
+      <p>For underrepresented students pursuing science, technology, engineering, or mathematics. STEM degrees open doors — this fund helps keep them open for students who'd otherwise be shut out.</p>
+      <span class="fund-card-award tag-stem">Awards up to $2,000</span>
+    </div>
+
+    <div class="fund-card">
+      <div class="fund-card-icon" style="background:#EEEDFE;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3C3489" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <h3>Arts &amp; Humanities Fund</h3>
+      <p>For students pursuing film, music, design, literature, and the humanities. Creative fields have always been harder to fund — this is our answer to that gap.</p>
+      <span class="fund-card-award tag-la">Awards up to $1,500</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <p class="eyebrow">How it works</p>
+    <h2>Simple. Transparent. Student-first.</h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-step-num">01</div>
+        <h4>You give</h4>
+        <p>Donate any amount through our secure Zeffy form below. Zeffy covers all platform fees, so 100% of your gift reaches students.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">02</div>
+        <h4>Students apply</h4>
+        <p>Students at HBCUs, HSIs, and community colleges submit applications with their story, financial need, and goals. Every application is reviewed by a real person.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">03</div>
+        <h4>Funds go directly to schools</h4>
+        <p>Award funds are disbursed directly to each student's educational institution — for tuition, books, or other approved expenses. No cash, no middlemen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZEFFY EMBED -->
+<section class="embed-section">
+  <p class="eyebrow">Make a gift</p>
+  <h2>Donate now</h2>
+  <p class="section-sub">All donations are tax-deductible. ScholarPath is a registered 501(c)(3) nonprofit organization. Zeffy covers all payment processing fees — your full gift goes to students.</p>
+
+  <div class="zeffy-wrap">
+    <iframe src='https://www.zeffy.com/en-US/embed/donation-form/donate-to-change-lives-13654' style='width: 100%; height: 900px; border: none;'></iframe>
+  </div>
+
+  <div class="tax-note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Donations are tax-deductible. You will receive a receipt via email for your records.
+  </div>
+</section>
 
 <footer>
   <a href="../index.html" class="logo">Scholar<span style="color:var(--gold);">Path</span></a>
